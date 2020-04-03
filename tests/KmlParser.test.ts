@@ -5,6 +5,7 @@ import PolylineCoordinateConversion from './data/PolylineCoordinateConversion';
 import KmlParser from '../src/parser/KmlParser';
 import Point from './data/Point';
 import Text from './data/Text';
+import NestedFolders from './data/NestedFolders';
 
 describe('KmlParser', () => {
     it('should parse a kml stream and return a design with polylines', async done => {
@@ -51,11 +52,11 @@ describe('KmlParser', () => {
 
     it('should parse a kml stream and return a design object with nested folders', async done => {
         const stream = fs.createReadStream(
-            path.join(__dirname, './data/Point.kml')
+            path.join(__dirname, './data/NestedFolders.kml')
         );
         const parser = new KmlParser(stream);
         const output = await parser.parse();
-        expect(output).toEqual(Point);
+        expect(output).toEqual(NestedFolders);
         done();
     });
 });

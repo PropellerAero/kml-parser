@@ -66,8 +66,10 @@ export default class BaseParser<T> {
     openTag(name: string, attributes: Attributes) {}
 
     popTagStack(name: string) {
+        if (this.isCurrentTag()) {
+            this.closeTag(name);
+        }
         this.tagStack.pop();
-        this.closeTag(name);
     }
 
     closeTag(name: string) {
