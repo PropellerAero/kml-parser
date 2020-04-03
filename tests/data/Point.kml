@@ -24,7 +24,7 @@
                     </LabelStyle>
                 </Style>
                 <Point>
-                    <coordinates>150.0,30.0,0</coordinates>
+                    <coordinates>150.0,30.0</coordinates>
                 </Point>
             </Placemark>
             <Placemark>
@@ -37,7 +37,7 @@
                     </LabelStyle>
                 </Style>
                 <Point>
-                    <coordinates>120.0,10.0,0</coordinates>
+                    <coordinates>120.0,10.0</coordinates>
                 </Point>
             </Placemark>
         </Folder>
