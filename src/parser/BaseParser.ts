@@ -1,16 +1,27 @@
 import { Attributes } from '../types/node-xml-stream';
-import { Coordinate, ConvertCoordinate } from '../types/kml';
+import { ConvertCoordinate } from '../types/kml';
+import TextParser from './TextParser';
+import StyleParser from './StyleParser';
 
 type StreamEventHandler = (...args: any[]) => void;
 
 export type ParserOptions = {
     convertCoordinate?: ConvertCoordinate;
+    tag?: string;
+};
+
+type ParserConstructor = Function & {
+    Tag: string;
 };
 
 export default class BaseParser<T> {
+    static Tag: string;
+    data: T;
     options: ParserOptions;
     stream: NodeJS.ReadableStream;
     promise: Promise<T>;
+    awaiting: Array<Promise<any>> = [];
+    tagStack: Array<string> = [];
     resolveFn: (data: T) => void;
     rejectFn: (error: Error) => void;
     streamBindings: {
@@ -28,8 +39,8 @@ export default class BaseParser<T> {
     }
 
     on() {
-        this.bindStreamEvent('opentag', this.openTag);
-        this.bindStreamEvent('closetag', this.closeTag);
+        this.bindStreamEvent('opentag', this.pushTagStack);
+        this.bindStreamEvent('closetag', this.popTagStack);
         this.bindStreamEvent('text', this.text);
         this.bindStreamEvent('finish', this.finish);
     }
@@ -45,9 +56,28 @@ export default class BaseParser<T> {
         this.stream.on(event, this.streamBindings[event]);
     }
 
+    pushTagStack(name: string, attributes: Attributes) {
+        if (this.isCurrentTag()) {
+            this.openTag(name, attributes);
+        }
+        this.tagStack.push(name);
+    }
+
     openTag(name: string, attributes: Attributes) {}
 
-    closeTag(name: string) {}
+    popTagStack(name: string) {
+        this.tagStack.pop();
+        this.closeTag(name);
+    }
+
+    closeTag(name: string) {
+        if (name === this.getTag()) {
+            this.off();
+            Promise.all(this.awaiting).then(() => {
+                this.resolve(this.data);
+            });
+        }
+    }
 
     text(text: string) {}
 
@@ -55,6 +85,20 @@ export default class BaseParser<T> {
 
     parse(): Promise<T> {
         return this.promise;
+    }
+
+    getTag() {
+        const thisClass = <ParserConstructor>this.constructor;
+        return this.options.tag || thisClass.Tag;
+    }
+
+    isCurrentTag() {
+        return this.tagStack.length === 0;
+    }
+
+    await<U>(promise: Promise<U>) {
+        this.awaiting.push(promise);
+        return promise;
     }
 
     resolve(data: T) {

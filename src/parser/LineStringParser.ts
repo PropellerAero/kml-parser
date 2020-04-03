@@ -1,33 +1,26 @@
-import BaseParser from './BaseParser';
+import ParentParser from './ParentParser';
 import { Tags } from './tags';
-import { LineString } from '../types/kml';
-import TextParser from './TextParser';
-import CoordinatesParser from './CoordinatesParser';
+import { LineString, AltitudeMode } from '../types/kml';
 
-export default class LineStringParser extends BaseParser<LineString> {
-    lineString: LineString = {};
+export default class LineStringParser extends ParentParser<LineString> {
+    static Tag = Tags.LineString;
 
-    async openTag(name: string) {
+    data: LineString = {};
+
+    openTag(name: string) {
         switch (name) {
             case Tags.AltitudeMode:
-                const textParser = new TextParser(this.stream);
-                const altitudeMode = await textParser.parse();
-                this.lineString.altitudeMode = altitudeMode;
+                this.awaitText().then(altitudeMode => {
+                    this.data.altitudeMode = <AltitudeMode>altitudeMode;
+                });
+
                 break;
             case Tags.Coordinates:
-                const coordinatesParser = new CoordinatesParser(
-                    this.stream,
-                    this.options
-                );
-                const coordinates = await coordinatesParser.parse();
-                this.lineString.coordinates = coordinates;
-                break;
-        }
-    }
+                this.awaitCoordinates().then(coordinates => {
+                    this.data.coordinates = coordinates;
+                });
 
-    closeTag(name: string) {
-        if (name === Tags.LineString) {
-            this.resolve(this.lineString);
+                break;
         }
     }
 }

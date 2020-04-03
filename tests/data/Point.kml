@@ -13,39 +13,32 @@
             <SimpleField name="icon" type="string"></SimpleField>
         </Schema>
         <Folder>
-            <name>My Polylines</name>
+            <name>My Points</name>
             <Placemark>
-                <description>Polyline 1</description>
+                <description>Point 1</description>
                 <Style>
-                    <LineStyle>
+                    <LabelStyle>
                         <color>ff0000ff</color>
-                        <width>1</width>
-                    </LineStyle>
-                    <PolyStyle>
-                        <color>ffdd00ff</color>
-                        <fill>0</fill>
-                        <outline>0</outline>
-                    </PolyStyle>
+                        <colorMode>normal</colorMode>
+                        <scale>1</scale>
+                    </LabelStyle>
                 </Style>
-                <LineString>
-                    <altitudeMode>clampToGround</altitudeMode>
-                    <coordinates>150.0,30.0,0 150.0,35.0,0 145.0,30.0,0</coordinates>
-                </LineString>
+                <Point>
+                    <coordinates>150.0,30.0,0</coordinates>
+                </Point>
             </Placemark>
             <Placemark>
-                <description>Polyline 2</description>
+                <description>Point 2</description>
                 <Style>
-                    <LineStyle>
-                        <color>ff0000ff</color>
-                    </LineStyle>
-                    <PolyStyle>
-                        <fill>0</fill>
-                    </PolyStyle>
+                    <LabelStyle>
+                        <color>ffdd00ff</color>
+                        <colorMode>normal</colorMode>
+                        <scale>1</scale>
+                    </LabelStyle>
                 </Style>
-                <LineString>
-                    <altitudeMode>clampToGround</altitudeMode>
-                    <coordinates>120.0,-30.0,0 120.0,-35.0,0 115.0,-30.0,0</coordinates>
-                </LineString>
+                <Point>
+                    <coordinates>120.0,10.0,0</coordinates>
+                </Point>
             </Placemark>
         </Folder>
     </Document>

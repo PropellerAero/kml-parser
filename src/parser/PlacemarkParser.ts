@@ -1,45 +1,46 @@
 import { AllHtmlEntities } from 'html-entities';
-import BaseParser from './BaseParser';
-import TextParser from './TextParser';
-import StyleParser from './StyleParser';
 import { Placemark } from '../types/kml';
 import { Tags } from './tags';
 import LineStringParser from './LineStringParser';
+import PointParser from './PointParser';
+import ParentParser from './ParentParser';
+import StyleParser from './StyleParser';
 
-const htmlEntities = new AllHtmlEntities();
-
-export default class PlacemarkParser extends BaseParser<Placemark> {
+export default class PlacemarkParser extends ParentParser<Placemark> {
     static Tag = Tags.Placemark;
 
-    placemark: Placemark = {};
+    data: Placemark = {};
 
-    async openTag(tagName: string) {
+    openTag(tagName: string) {
         switch (tagName) {
-            case Tags.Description: {
-                this.parseDescription();
+            case Tags.Description:
+                this.awaitText(true).then(description => {
+                    this.data.description = description;
+                });
                 break;
-            }
+            case Tags.Name:
+                this.awaitText().then(name => {
+                    this.data.name = name;
+                });
+                break;
             case Tags.Style: {
-                this.parseStyle();
+                this.await(this.parseStyle());
                 break;
             }
             case Tags.LineString: {
-                this.parseLineString();
+                this.await(this.parseLineString());
+                break;
+            }
+            case Tags.Point: {
+                this.await(this.parsePoint());
                 break;
             }
         }
     }
 
-    async parseDescription() {
-        const textParser = new TextParser(this.stream);
-        const description = await textParser.parse();
-        this.placemark.description = htmlEntities.decode(description);
-    }
-
     async parseStyle() {
         const styleParser = new StyleParser(this.stream);
-        const style = await styleParser.parse();
-        this.placemark.style = style;
+        this.data.style = await styleParser.parse();
     }
 
     async parseLineString() {
@@ -48,12 +49,12 @@ export default class PlacemarkParser extends BaseParser<Placemark> {
             this.options
         );
         const lineString = await lineStringParser.parse();
-        this.placemark.lineString = lineString;
+        this.data.lineString = lineString;
     }
 
-    closeTag(name: string) {
-        if (name === Tags.Placemark) {
-            this.resolve(this.placemark);
-        }
+    async parsePoint() {
+        const pointParser = new PointParser(this.stream, this.options);
+        const point = await pointParser.parse();
+        this.data.point = point;
     }
 }

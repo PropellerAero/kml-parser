@@ -1,27 +1,27 @@
-import BaseParser from './BaseParser';
 import { Tags } from './tags';
-import TextParser from './TextParser';
 import { Folder } from '../types/kml';
+import ParentParser from './ParentParser';
 import PlacemarkParser from './PlacemarkParser';
 
-export default class FolderParser extends BaseParser<Folder> {
+export default class FolderParser extends ParentParser<Folder> {
     static Tag = Tags.Folder;
 
-    folder: Folder = {
+    data: Folder = {
         name: 'DEFAULT',
         placemarks: [],
     };
 
-    async openTag(tagName: string) {
+    openTag(tagName: string) {
         switch (tagName) {
             case Tags.Name: {
-                const textParser = new TextParser(this.stream, this.options);
-                const name = await textParser.parse();
-                this.folder.name = name;
+                this.awaitText().then(name => {
+                    this.data.name = name;
+                });
+
                 break;
             }
             case Tags.Placemark: {
-                this.parsePlacemark();
+                this.await(this.parsePlacemark());
                 break;
             }
         }
@@ -30,12 +30,6 @@ export default class FolderParser extends BaseParser<Folder> {
     async parsePlacemark() {
         const placemarkParser = new PlacemarkParser(this.stream, this.options);
         const placemark = await placemarkParser.parse();
-        this.folder.placemarks.push(placemark);
-    }
-
-    closeTag(name: string) {
-        if (name === Tags.Folder) {
-            this.resolve(this.folder);
-        }
+        this.data.placemarks.push(placemark);
     }
 }

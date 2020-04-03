@@ -3,9 +3,11 @@ import path from 'path';
 import Polyline from './data/Polyline';
 import PolylineCoordinateConversion from './data/PolylineCoordinateConversion';
 import KmlParser from '../src/parser/KmlParser';
+import Point from './data/Point';
+import Text from './data/Text';
 
 describe('KmlParser', () => {
-    it('should parse a kml stream and return a design object', async done => {
+    it('should parse a kml stream and return a design with polylines', async done => {
         const stream = fs.createReadStream(
             path.join(__dirname, './data/Polyline.kml')
         );
@@ -24,6 +26,26 @@ describe('KmlParser', () => {
         });
         const output = await parser.parse();
         expect(output).toEqual(PolylineCoordinateConversion);
+        done();
+    });
+
+    it('should parse a kml stream and return a design object with points', async done => {
+        const stream = fs.createReadStream(
+            path.join(__dirname, './data/Point.kml')
+        );
+        const parser = new KmlParser(stream);
+        const output = await parser.parse();
+        expect(output).toEqual(Point);
+        done();
+    });
+
+    it('should parse a kml stream and return a design object with texts', async done => {
+        const stream = fs.createReadStream(
+            path.join(__dirname, './data/Text.kml')
+        );
+        const parser = new KmlParser(stream);
+        const output = await parser.parse();
+        expect(output).toEqual(Text);
         done();
     });
 });

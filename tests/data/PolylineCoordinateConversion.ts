@@ -2,11 +2,11 @@ export default {
     blocks: {},
     entities: [
         {
-            color: 16777215,
+            color: 16711680,
             extendedData: {
                 customStrings: ['Polyline 1'],
             },
-            handle: '0',
+            handle: '10',
             layer: 'My Polylines',
             type: 'POLYLINE',
             vertices: [
@@ -28,11 +28,11 @@ export default {
             ],
         },
         {
-            color: 16777215,
+            color: 16711680,
             extendedData: {
                 customStrings: ['Polyline 2'],
             },
-            handle: '1',
+            handle: '11',
             layer: 'My Polylines',
             type: 'POLYLINE',
             vertices: [

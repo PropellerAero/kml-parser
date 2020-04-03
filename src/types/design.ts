@@ -22,10 +22,18 @@ export interface Polyline extends BaseEntity {
 
 export interface Point extends BaseEntity {
     type: 'POINT';
+    color: number;
     position: Cartesian3;
 }
 
-export type Entity = Polyline | Point;
+export interface Text extends BaseEntity {
+    type: 'TEXT';
+    color: number;
+    position: Cartesian3;
+    text: string;
+}
+
+export type Entity = Polyline | Point | Text;
 
 export type Block = {
     position: Cartesian3;

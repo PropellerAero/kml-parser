@@ -1,17 +1,25 @@
-import BaseParser from './BaseParser';
+import ParentParser from './ParentParser';
 import { Tags } from './tags';
 import { LineStyle } from '../types/kml';
-import TextParser from './TextParser';
 
-export default class LineStyleParser extends BaseParser<LineStyle> {
-    async openTag(name: string) {
+export default class LineStyleParser extends ParentParser<LineStyle> {
+    static Tag = Tags.LineStyle;
+
+    data: LineStyle = {};
+
+    openTag(name: string) {
         switch (name) {
             case Tags.Color:
-                const textParser = new TextParser(this.stream);
-                const color = await textParser.parse();
-                this.resolve({
-                    color,
+                this.awaitText().then(color => {
+                    this.data.color = color;
                 });
+
+                break;
+            case Tags.Width:
+                this.awaitNumber().then(width => {
+                    this.data.width = width;
+                });
+
                 break;
         }
     }
