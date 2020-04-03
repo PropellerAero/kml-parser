@@ -10,8 +10,8 @@ export default class PointParser extends ParentParser<Point> {
     openTag(name: string) {
         switch (name) {
             case Tags.Coordinates:
-                this.awaitCoordinates().then(coordinates => {
-                    this.data.coordinate = coordinates[0];
+                this.awaitCoordinate().then(coordinate => {
+                    this.data.coordinate = coordinate;
                 });
 
                 break;

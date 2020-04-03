@@ -2,6 +2,7 @@ import BaseParser from './BaseParser';
 import TextParser from './TextParser';
 import CoordinatesParser from './CoordinatesParser';
 import { AllHtmlEntities } from 'html-entities';
+import CoordinateParser from './CoordinateParser';
 
 const htmlEntities = new AllHtmlEntities();
 
@@ -35,5 +36,17 @@ export default class ParentParser<T> extends BaseParser<T> {
             this.options
         );
         return coordinatesParser.parse();
+    }
+
+    awaitCoordinate() {
+        return this.await(this.parseCoordinate());
+    }
+
+    parseCoordinate() {
+        const coordinateParser = new CoordinateParser(
+            this.stream,
+            this.options
+        );
+        return coordinateParser.parse();
     }
 }
