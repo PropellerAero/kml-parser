@@ -9,15 +9,19 @@ export default class FolderParser extends ParentParser<Folder> {
     data: Folder = {
         name: 'DEFAULT',
         placemarks: [],
+        folders: [],
     };
 
     openTag(tagName: string) {
         switch (tagName) {
+            case Tags.Folder: {
+                this.await(this.parseChildFolder());
+                break;
+            }
             case Tags.Name: {
                 this.awaitText().then(name => {
                     this.data.name = name;
                 });
-
                 break;
             }
             case Tags.Placemark: {
@@ -31,5 +35,11 @@ export default class FolderParser extends ParentParser<Folder> {
         const placemarkParser = new PlacemarkParser(this.stream, this.options);
         const placemark = await placemarkParser.parse();
         this.data.placemarks.push(placemark);
+    }
+
+    async parseChildFolder() {
+        const folderParser = new FolderParser(this.stream, this.options);
+        const folder = await folderParser.parse();
+        this.data.folders.push(folder);
     }
 }

@@ -11,6 +11,7 @@ export enum AltitudeMode {
 export type Folder = {
     name: string;
     placemarks: Array<Placemark>;
+    folders: Array<Folder>;
 };
 
 export type Placemark = {

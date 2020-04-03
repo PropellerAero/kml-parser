@@ -48,4 +48,14 @@ describe('KmlParser', () => {
         expect(output).toEqual(Text);
         done();
     });
+
+    it('should parse a kml stream and return a design object with nested folders', async done => {
+        const stream = fs.createReadStream(
+            path.join(__dirname, './data/Point.kml')
+        );
+        const parser = new KmlParser(stream);
+        const output = await parser.parse();
+        expect(output).toEqual(Point);
+        done();
+    });
 });

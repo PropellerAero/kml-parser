@@ -5,6 +5,7 @@ import BaseParser, { ParserOptions } from './BaseParser';
 import FolderParser from './FolderParser';
 import { Design, Layer } from '../types/design';
 import hexToLong from '../utils/hexToLong';
+import { Folder } from '../types/kml';
 
 const ENTITY_HANDLE_OFFSET = 10;
 const DEFAULT_COLOR = 0xffffff;
@@ -70,8 +71,16 @@ export default class KmlParser extends BaseParser<Design> {
     async parseFolder() {
         const folderParser = new FolderParser(this.stream, this.options);
         const folder = await folderParser.parse();
-        const { name: layerName, placemarks } = folder;
-        console.log(layerName);
+        this.processFolder(folder);
+    }
+
+    processFolder(folder: Folder) {
+        const { name: layerName, placemarks, folders } = folder;
+
+        folders.forEach(f => this.processFolder(f));
+
+        if (!placemarks.length) return;
+
         this.data.tables.layer.layers[layerName] = { name: layerName };
         placemarks.forEach(placemark => {
             const { description, lineString, style, name, point } = placemark;
