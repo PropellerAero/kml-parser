@@ -1,20 +1,19 @@
 import BaseParser from './BaseParser';
 import TextParser from './TextParser';
 import CoordinatesParser from './CoordinatesParser';
-import { AllHtmlEntities } from 'html-entities';
+import { XmlEntities } from 'html-entities';
 import CoordinateParser from './CoordinateParser';
 
-const htmlEntities = new AllHtmlEntities();
+const xmlEntities = new XmlEntities();
 
 export default class ParentParser<T> extends BaseParser<T> {
-    awaitText(decode?: boolean) {
-        return this.await(this.parseText(decode));
+    awaitText() {
+        return this.await(this.parseText());
     }
 
-    async parseText(decode?: boolean) {
+    parseText() {
         const textParser = new TextParser(this.stream);
-        const text = await textParser.parse();
-        return decode ? htmlEntities.decode(text) : text;
+        return textParser.parse();
     }
 
     awaitNumber() {
@@ -22,7 +21,7 @@ export default class ParentParser<T> extends BaseParser<T> {
     }
 
     async parseNumber() {
-        const text = this.parseText();
+        const text = await this.parseText();
         return Number(text);
     }
 

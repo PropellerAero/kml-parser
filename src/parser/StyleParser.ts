@@ -3,6 +3,7 @@ import { Style } from '../types/kml';
 import { Tags } from './tags';
 import LineStyleParser from './LineStyleParser';
 import PolyStyleParser from './PolyStyleParser';
+import LabelStyleParser from './LabelStyleParser';
 
 export default class StyleParser extends ParentParser<Style> {
     static Tag = Tags.Style;
@@ -17,6 +18,9 @@ export default class StyleParser extends ParentParser<Style> {
             case Tags.PolyStyle:
                 this.await(this.parsePolyStyle());
                 break;
+            case Tags.LabelStyle:
+                this.await(this.parseLabelStyle());
+                break;
         }
     }
 
@@ -30,5 +34,11 @@ export default class StyleParser extends ParentParser<Style> {
         const polyStyleParser = new PolyStyleParser(this.stream);
         const polyStyle = await polyStyleParser.parse();
         this.data.polyStyle = polyStyle;
+    }
+
+    async parseLabelStyle() {
+        const labelStyleParser = new LabelStyleParser(this.stream);
+        const labelStyle = await labelStyleParser.parse();
+        this.data.labelStyle = labelStyle;
     }
 }

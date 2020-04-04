@@ -1,4 +1,3 @@
-import { AllHtmlEntities } from 'html-entities';
 import { Placemark } from '../types/kml';
 import { Tags } from './tags';
 import LineStringParser from './LineStringParser';
@@ -14,13 +13,13 @@ export default class PlacemarkParser extends ParentParser<Placemark> {
     openTag(tagName: string) {
         switch (tagName) {
             case Tags.Description:
-                this.awaitText(true).then(description => {
+                this.awaitText().then(description => {
                     this.data.description = description;
                 });
                 break;
 
             case Tags.Name:
-                this.awaitText(true).then(name => {
+                this.awaitText().then(name => {
                     this.data.name = name;
                 });
                 break;

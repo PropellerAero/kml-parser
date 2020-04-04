@@ -13,7 +13,6 @@ import ParserStream from './ParserStream';
 const ENTITY_HANDLE_OFFSET = 10;
 const DEFAULT_COLOR = 0xffffff;
 const DEFAULT_POSITION = { x: 0, y: 0, z: 0 };
-const DEFAULT_STYLE_KEY = 'normal';
 
 export default class KmlParser extends BaseParser<Design> {
     data: Design;
@@ -89,7 +88,7 @@ export default class KmlParser extends BaseParser<Design> {
     getStyleFromStyleMap(styleUrl?: string) {
         if (!styleUrl) return null;
         const styleMap = this.styleMaps[styleUrl.replace(/^#/, '')];
-        return styleMap && styleMap.styles[DEFAULT_STYLE_KEY];
+        return styleMap && merge({}, ...Object.values(styleMap.styles));
     }
 
     processFolder(folder: Folder) {
