@@ -8,6 +8,7 @@ import { Design, Layer } from '../types/design';
 import hexToLong from '../utils/hexToLong';
 import { Folder, StyleMap, Style } from '../types/kml';
 import StyleMapParser from './StyleMapParser';
+import ParserStream from './ParserStream';
 
 const ENTITY_HANDLE_OFFSET = 10;
 const DEFAULT_COLOR = 0xffffff;
@@ -15,16 +16,12 @@ const DEFAULT_POSITION = { x: 0, y: 0, z: 0 };
 const DEFAULT_STYLE_KEY = 'normal';
 
 export default class KmlParser extends BaseParser<Design> {
-    static ScopedTags = [Tags.KML, Tags.Document];
-
     data: Design;
     styleMaps: { [name: string]: StyleMap };
     folders: Array<Folder>;
 
     constructor(stream: NodeJS.ReadableStream, options: ParserOptions = {}) {
-        const xml = new XmlParser();
-        const parserStream: NodeJS.ReadableStream = stream.pipe(xml);
-        parserStream.setMaxListeners(100);
+        const parserStream = new ParserStream(stream);
         super(parserStream, options);
         this.data = {
             tables: {
@@ -54,6 +51,21 @@ export default class KmlParser extends BaseParser<Design> {
         }
     }
 
+    async parseStyleMap(attributes: Attributes) {
+        const styleMapParser = new StyleMapParser(this.stream, {
+            ...this.options,
+            attributes,
+        });
+        const styleMap = await styleMapParser.parse();
+        this.styleMaps[styleMap.id] = styleMap;
+    }
+
+    async parseFolder() {
+        const folderParser = new FolderParser(this.stream, this.options);
+        const folder = await folderParser.parse();
+        this.folders.push(folder);
+    }
+
     getSharedEntityProperties(options: {
         layerName: string;
         color?: string;
@@ -72,12 +84,6 @@ export default class KmlParser extends BaseParser<Design> {
                   }
                 : undefined,
         };
-    }
-
-    async parseFolder() {
-        const folderParser = new FolderParser(this.stream, this.options);
-        const folder = await folderParser.parse();
-        this.folders.push(folder);
     }
 
     getStyleFromStyleMap(styleUrl?: string) {
@@ -149,15 +155,6 @@ export default class KmlParser extends BaseParser<Design> {
                 });
             }
         });
-    }
-
-    async parseStyleMap(attributes: Attributes) {
-        const styleMapParser = new StyleMapParser(this.stream, {
-            ...this.options,
-            attributes,
-        });
-        const styleMap = await styleMapParser.parse();
-        this.styleMaps[styleMap.id] = styleMap;
     }
 
     finish() {

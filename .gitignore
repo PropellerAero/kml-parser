@@ -73,3 +73,5 @@ deployment/secrets
 # Mac file system
 .DS_Store
 
+# CLI
+output.json

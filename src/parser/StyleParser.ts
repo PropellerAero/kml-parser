@@ -15,7 +15,6 @@ export default class StyleParser extends ParentParser<Style> {
                 this.await(this.parseLineStyle());
                 break;
             case Tags.PolyStyle:
-                const polyStyleParser = new PolyStyleParser(this.stream);
                 this.await(this.parsePolyStyle());
                 break;
         }
