@@ -14,20 +14,19 @@ export default class FolderParser extends ParentParser<Folder> {
 
     openTag(tagName: string) {
         switch (tagName) {
-            case Tags.Folder: {
+            case Tags.Folder:
                 this.await(this.parseChildFolder());
                 break;
-            }
-            case Tags.Name: {
+
+            case Tags.Name:
                 this.awaitText().then(name => {
                     this.data.name = name;
                 });
                 break;
-            }
-            case Tags.Placemark: {
+
+            case Tags.Placemark:
                 this.await(this.parsePlacemark());
                 break;
-            }
         }
     }
 

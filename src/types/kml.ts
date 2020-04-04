@@ -40,6 +40,18 @@ export type LabelStyle = {
     scale?: number;
 };
 
+export type StylePair = {
+    key: string;
+    style: Style;
+};
+
+export type StyleMap = {
+    id: string;
+    styles: {
+        [key: string]: Style;
+    };
+};
+
 export type Style = {
     lineStyle?: LineStyle;
     polyStyle?: PolyStyle;

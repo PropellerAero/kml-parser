@@ -19,13 +19,18 @@ export default class PlacemarkParser extends ParentParser<Placemark> {
                 });
                 break;
             case Tags.Name:
-                this.awaitText().then(name => {
+                this.awaitText(true).then(name => {
                     this.data.name = name;
                 });
                 break;
             case Tags.Style: {
                 this.await(this.parseStyle());
                 break;
+            }
+            case Tags.StyleUrl: {
+                this.awaitText().then(styleUrl => {
+                    this.data.styleUrl = styleUrl;
+                });
             }
             case Tags.LineString: {
                 this.await(this.parseLineString());

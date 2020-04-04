@@ -6,6 +6,7 @@ import KmlParser from '../src/parser/KmlParser';
 import Point from './data/Point';
 import Text from './data/Text';
 import NestedFolders from './data/NestedFolders';
+import StyleMap from './data/StyleMap';
 
 describe('KmlParser', () => {
     it('should parse a kml stream and return a design with polylines', async done => {
@@ -57,6 +58,16 @@ describe('KmlParser', () => {
         const parser = new KmlParser(stream);
         const output = await parser.parse();
         expect(output).toEqual(NestedFolders);
+        done();
+    });
+
+    it('should parse a kml stream and return a design object using style maps', async done => {
+        const stream = fs.createReadStream(
+            path.join(__dirname, './data/StyleMap.kml')
+        );
+        const parser = new KmlParser(stream);
+        const output = await parser.parse();
+        expect(output).toEqual(StyleMap);
         done();
     });
 });

@@ -1,17 +1,17 @@
 import { Attributes } from '../types/node-xml-stream';
 import { ConvertCoordinate } from '../types/kml';
-import TextParser from './TextParser';
-import StyleParser from './StyleParser';
 
 type StreamEventHandler = (...args: any[]) => void;
 
 export type ParserOptions = {
     convertCoordinate?: ConvertCoordinate;
     tag?: string;
+    attributes?: Attributes;
 };
 
 type ParserConstructor = Function & {
     Tag: string;
+    ScopedTags: Array<string>;
 };
 
 export default class BaseParser<T> {
@@ -22,6 +22,7 @@ export default class BaseParser<T> {
     promise: Promise<T>;
     awaiting: Array<Promise<any>> = [];
     tagStack: Array<string> = [];
+    scopedTags: Array<string>;
     resolveFn: (data: T) => void;
     rejectFn: (error: Error) => void;
     streamBindings: {
@@ -36,6 +37,14 @@ export default class BaseParser<T> {
             this.rejectFn = reject;
         });
         this.on();
+        const tag = this.getTag();
+        const scopedTags: Array<string> = [];
+        if (tag) {
+            this.tagStack.push(tag);
+            scopedTags.push(tag);
+        }
+        const constructor = <ParserConstructor>this.constructor;
+        this.scopedTags = constructor.ScopedTags || scopedTags;
     }
 
     on() {
@@ -57,7 +66,7 @@ export default class BaseParser<T> {
     }
 
     pushTagStack(name: string, attributes: Attributes) {
-        if (this.isCurrentTag()) {
+        if (this.isInScope()) {
             this.openTag(name, attributes);
         }
         this.tagStack.push(name);
@@ -66,7 +75,7 @@ export default class BaseParser<T> {
     openTag(name: string, attributes: Attributes) {}
 
     popTagStack(name: string) {
-        if (this.isCurrentTag()) {
+        if (this.isInScope()) {
             this.closeTag(name);
         }
         this.tagStack.pop();
@@ -94,8 +103,13 @@ export default class BaseParser<T> {
         return this.options.tag || thisClass.Tag;
     }
 
-    isCurrentTag() {
-        return this.tagStack.length === 0;
+    isInScope() {
+        for (const index in this.tagStack) {
+            if (this.tagStack[index] != this.scopedTags[index]) {
+                return false;
+            }
+        }
+        return true;
     }
 
     await<U>(promise: Promise<U>) {
