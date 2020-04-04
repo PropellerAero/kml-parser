@@ -2,7 +2,7 @@ export default {
     blocks: {},
     entities: [
         {
-            color: 16777215,
+            color: 16711680,
             text: 'Text 1',
             extendedData: {
                 customStrings: ['Text 1'],
@@ -17,7 +17,7 @@ export default {
             },
         },
         {
-            color: 16777215,
+            color: 16711680,
             extendedData: {
                 customStrings: ['Text 1'],
             },

@@ -4,35 +4,9 @@ export default {
         {
             color: 16711680,
             extendedData: {
-                customStrings: ['Polyline 1'],
-            },
-            handle: '10',
-            layer: 'My Polylines',
-            type: 'POLYLINE',
-            vertices: [
-                {
-                    x: 151,
-                    y: 31,
-                    z: 0,
-                },
-                {
-                    x: 151,
-                    y: 36,
-                    z: 0,
-                },
-                {
-                    x: 146,
-                    y: 31,
-                    z: 0,
-                },
-            ],
-        },
-        {
-            color: 16711680,
-            extendedData: {
                 customStrings: ['Polyline 2'],
             },
-            handle: '11',
+            handle: '10',
             layer: 'My Polylines',
             type: 'POLYLINE',
             vertices: [
@@ -49,6 +23,32 @@ export default {
                 {
                     x: 116,
                     y: -29,
+                    z: 0,
+                },
+            ],
+        },
+        {
+            color: 16711680,
+            extendedData: {
+                customStrings: ['Polyline 1'],
+            },
+            handle: '11',
+            layer: 'My Polylines',
+            type: 'POLYLINE',
+            vertices: [
+                {
+                    x: 151,
+                    y: 31,
+                    z: 0,
+                },
+                {
+                    x: 151,
+                    y: 36,
+                    z: 0,
+                },
+                {
+                    x: 146,
+                    y: 31,
                     z: 0,
                 },
             ],

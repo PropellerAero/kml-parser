@@ -2,7 +2,7 @@ export default {
     blocks: {},
     entities: [
         {
-            color: 16777215,
+            color: 16711680,
             extendedData: {
                 customStrings: ['Point 1'],
             },
@@ -16,7 +16,7 @@ export default {
             },
         },
         {
-            color: 16777215,
+            color: 16768256,
             extendedData: {
                 customStrings: ['Point 2'],
             },

@@ -5,6 +5,6 @@ const xmlEntities = new XmlEntities();
 
 export default class TextParser extends BaseParser<string> {
     text(value: string) {
-        this.resolve(xmlEntities.decode(value));
+        this.resolve(xmlEntities.decode(xmlEntities.decode(value)));
     }
 }
