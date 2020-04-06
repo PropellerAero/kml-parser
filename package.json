@@ -35,7 +35,7 @@
     "dependencies": {
         "html-entities": "^1.2.1",
         "lodash": "^4.17.15",
-        "node-xml-stream": "^1.0.2"
+        "node-xml-stream-parser": "^1.0.12"
     },
     "husky": {
         "hooks": {

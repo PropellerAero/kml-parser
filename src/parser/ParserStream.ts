@@ -1,4 +1,4 @@
-import XmlParser from 'node-xml-stream';
+import XmlParser from 'node-xml-stream-parser';
 import Parser from '../types/parser';
 import { Attributes } from '../types/node-xml-stream';
 
