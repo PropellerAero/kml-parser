@@ -11,6 +11,7 @@
         "build": "yarn build:source & yarn build:declarations",
         "build:source": "babel src --out-dir dist --extensions '.ts' --source-maps",
         "build:declarations": "tsc src/index.ts --declaration --emitDeclarationOnly --outDir dist",
+        "cli": "yarn build && node cli.js",
         "test": "jest",
         "codeship:decrypt": "./deployment/crypto.sh decrypt ./deployment/encrypted ./deployment/secrets",
         "codeship:encrypt": "./deployment/crypto.sh encrypt ./deployment/secrets ./deployment/encrypted"

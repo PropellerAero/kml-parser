@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+    <Document id="root_doc">
+        <Folder>
+            <name><![CDATA[My Points]]></name>
+            <Placemark>
+                <description><![CDATA[Point 1]]></description>
+                <Style>
+                    <LabelStyle>
+                        <color>ff0000ff</color>
+                        <colorMode>normal</colorMode>
+                        <scale>1</scale>
+                    </LabelStyle>
+                </Style>
+                <Point>
+                    <coordinates>150.0, 30.0</coordinates>
+                </Point>
+            </Placemark>
+            <Placemark>
+                <description><![CDATA[Point 2]]></description>
+                <Style>
+                    <LabelStyle>
+                        <color>ffdd00ff</color>
+                        <colorMode>normal</colorMode>
+                        <scale>1</scale>
+                    </LabelStyle>
+                </Style>
+                <Point>
+                    <coordinates>120.0, 10.0</coordinates>
+                </Point>
+            </Placemark>
+        </Folder>
+    </Document>
+</kml>

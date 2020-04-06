@@ -53,6 +53,7 @@ export type StyleMap = {
 };
 
 export type Style = {
+    id?: string;
     lineStyle?: LineStyle;
     polyStyle?: PolyStyle;
     labelStyle?: LabelStyle;

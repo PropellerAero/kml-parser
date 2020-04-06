@@ -9,6 +9,7 @@ import hexToLong from '../utils/hexToLong';
 import { Folder, StyleMap, Style } from '../types/kml';
 import StyleMapParser from './StyleMapParser';
 import ParserStream from './ParserStream';
+import StyleParser from './StyleParser';
 
 const ENTITY_HANDLE_OFFSET = 10;
 const DEFAULT_COLOR = 0xffffff;
@@ -17,6 +18,7 @@ const DEFAULT_POSITION = { x: 0, y: 0, z: 0 };
 export default class KmlParser extends BaseParser<Design> {
     data: Design;
     styleMaps: { [name: string]: StyleMap };
+    styles: { [name: string]: Style };
     folders: Array<Folder>;
 
     constructor(stream: NodeJS.ReadableStream, options: ParserOptions = {}) {
@@ -35,18 +37,34 @@ export default class KmlParser extends BaseParser<Design> {
             blocks: {},
         };
         this.styleMaps = {};
+        this.styles = {};
         this.folders = [];
     }
 
     openTag(name: string, attributes: Attributes) {
         switch (name) {
-            case Tags.Folder: {
+            case Tags.Folder:
                 this.await(this.parseFolder());
                 break;
-            }
-            case Tags.StyleMap: {
+            case Tags.StyleMap:
                 this.await(this.parseStyleMap(attributes));
-            }
+                break;
+            case Tags.Style:
+                this.await(this.parseStyle(attributes));
+                break;
+            default:
+                break;
+        }
+    }
+
+    async parseStyle(attributes: Attributes) {
+        const styleParser = new StyleParser(this.stream, {
+            ...this.options,
+            attributes,
+        });
+        const style = await styleParser.parse();
+        if (style.id) {
+            this.styles[style.id] = style;
         }
     }
 
@@ -85,21 +103,27 @@ export default class KmlParser extends BaseParser<Design> {
         };
     }
 
-    getStyleFromStyleMap(styleUrl?: string) {
+    getStyle(styleUrl?: string) {
         if (!styleUrl) return null;
-        const styleMap = this.styleMaps[styleUrl.replace(/^#/, '')];
+        const id = styleUrl.replace(/^#/, '');
+
+        if (this.styles[id]) {
+            return this.styles[id];
+        }
+
+        const styleMap = this.styleMaps[id];
         return styleMap && merge({}, ...Object.values(styleMap.styles));
     }
 
     processFolder(folder: Folder) {
         const { name: layerName, placemarks, folders } = folder;
 
-        folders.forEach(f => this.processFolder(f));
+        folders.forEach((f) => this.processFolder(f));
 
         if (!placemarks.length) return;
 
         this.data.tables.layer.layers[layerName] = { name: layerName };
-        placemarks.forEach(placemark => {
+        placemarks.forEach((placemark) => {
             const {
                 description,
                 lineString,
@@ -109,7 +133,7 @@ export default class KmlParser extends BaseParser<Design> {
                 styleUrl,
             } = placemark;
 
-            const refStyle = this.getStyleFromStyleMap(styleUrl);
+            const refStyle = this.getStyle(styleUrl);
             const { lineStyle, labelStyle }: Style = merge({}, refStyle, style);
 
             if (lineString) {
@@ -158,7 +182,7 @@ export default class KmlParser extends BaseParser<Design> {
 
     finish() {
         Promise.all(this.awaiting).then(() => {
-            this.folders.forEach(folder => this.processFolder(folder));
+            this.folders.forEach((folder) => this.processFolder(folder));
             this.resolve(this.data);
         });
     }

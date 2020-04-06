@@ -12,6 +12,7 @@ export default class ParserStream {
         this.stream.on('opentag', this.openTag);
         this.stream.on('closetag', this.closeTag);
         this.stream.on('text', this.text);
+        this.stream.on('cdata', this.cdata);
         this.stream.on('finish', this.finish);
     }
 
@@ -35,7 +36,7 @@ export default class ParserStream {
         //     'Open',
         //     name,
         //     parser.constructor.name,
-        //     this.parsers.map(p => p.constructor.name)
+        //     this.parsers.map((p) => p.constructor.name)
         // );
         parser.openTag(name, attributes);
     };
@@ -46,13 +47,17 @@ export default class ParserStream {
         //     'Close',
         //     name,
         //     parser.constructor.name,
-        //     this.parsers.map(p => p.constructor.name)
+        //     this.parsers.map((p) => p.constructor.name)
         // );
         parser.closeTag(name);
     };
 
     text = (text: string) => {
         this.getParser().text(text);
+    };
+
+    cdata = (text: string) => {
+        this.getParser().cdata(text);
     };
 
     finish = () => {

@@ -9,7 +9,7 @@ import NestedFolders from './data/NestedFolders';
 import StyleMap from './data/StyleMap';
 
 describe('KmlParser', () => {
-    it('should parse a kml stream and return a design with polylines', async done => {
+    it('should parse a kml stream and return a design with polylines', async (done) => {
         const stream = fs.createReadStream(
             path.join(__dirname, './data/Polyline.kml')
         );
@@ -19,7 +19,7 @@ describe('KmlParser', () => {
         done();
     });
 
-    it('should accept a coordinate conversion function', async done => {
+    it('should accept a coordinate conversion function', async (done) => {
         const stream = fs.createReadStream(
             path.join(__dirname, './data/Polyline.kml')
         );
@@ -31,7 +31,7 @@ describe('KmlParser', () => {
         done();
     });
 
-    it('should parse a kml stream and return a design object with points', async done => {
+    it('should parse a kml stream and return a design object with points', async (done) => {
         const stream = fs.createReadStream(
             path.join(__dirname, './data/Point.kml')
         );
@@ -41,7 +41,17 @@ describe('KmlParser', () => {
         done();
     });
 
-    it('should parse a kml stream and return a design object with texts', async done => {
+    it('should parse a kml stream and return a design object with with cdata text', async (done) => {
+        const stream = fs.createReadStream(
+            path.join(__dirname, './data/PointCData.kml')
+        );
+        const parser = new KmlParser(stream);
+        const output = await parser.parse();
+        expect(output).toEqual(Point);
+        done();
+    });
+
+    it('should parse a kml stream and return a design object with texts', async (done) => {
         const stream = fs.createReadStream(
             path.join(__dirname, './data/Text.kml')
         );
@@ -51,7 +61,7 @@ describe('KmlParser', () => {
         done();
     });
 
-    it('should parse a kml stream and return a design object with nested folders', async done => {
+    it('should parse a kml stream and return a design object with nested folders', async (done) => {
         const stream = fs.createReadStream(
             path.join(__dirname, './data/NestedFolders.kml')
         );
@@ -61,9 +71,19 @@ describe('KmlParser', () => {
         done();
     });
 
-    it('should parse a kml stream and return a design object using style maps', async done => {
+    it('should parse a kml stream and return a design object using style maps', async (done) => {
         const stream = fs.createReadStream(
             path.join(__dirname, './data/StyleMap.kml')
+        );
+        const parser = new KmlParser(stream);
+        const output = await parser.parse();
+        expect(output).toEqual(StyleMap);
+        done();
+    });
+
+    it('should parse a kml stream and return a design object using a global style', async (done) => {
+        const stream = fs.createReadStream(
+            path.join(__dirname, './data/GlobalStyle.kml')
         );
         const parser = new KmlParser(stream);
         const output = await parser.parse();

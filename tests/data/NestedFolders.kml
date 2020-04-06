@@ -14,35 +14,37 @@
         </Schema>
         <Folder>
             <name>My Point 1</name>
-            <Placemark>
-                <description>Point 1</description>
-                <Style>
-                    <LabelStyle>
-                        <color>ff0000ff</color>
-                        <colorMode>normal</colorMode>
-                        <scale>1</scale>
-                    </LabelStyle>
-                </Style>
-                <Point>
-                    <coordinates>150.0, 30.0</coordinates>
-                </Point>
-            </Placemark>
             <Folder>
-                <name>My Point 2</name>
                 <Placemark>
-                    <description>Point 2</description>
+                    <description>Point 1</description>
                     <Style>
                         <LabelStyle>
-                            <color>ffdd00ff</color>
+                            <color>ff0000ff</color>
                             <colorMode>normal</colorMode>
                             <scale>1</scale>
                         </LabelStyle>
                     </Style>
                     <Point>
-                        <coordinates>120.0, 10.0</coordinates>
+                        <coordinates>150.0, 30.0</coordinates>
                     </Point>
                 </Placemark>
             </Folder>
+        </Folder>
+        <Folder>
+            <name>My Point 2</name>
+            <Placemark>
+                <description>Point 2</description>
+                <Style>
+                    <LabelStyle>
+                        <color>ffdd00ff</color>
+                        <colorMode>normal</colorMode>
+                        <scale>1</scale>
+                    </LabelStyle>
+                </Style>
+                <Point>
+                    <coordinates>120.0, 10.0</coordinates>
+                </Point>
+            </Placemark>
         </Folder>
     </Document>
 </kml>

@@ -4,32 +4,33 @@ import LineStringParser from './LineStringParser';
 import PointParser from './PointParser';
 import ParentParser from './ParentParser';
 import StyleParser from './StyleParser';
+import { Attributes } from '../types/node-xml-stream';
 
 export default class PlacemarkParser extends ParentParser<Placemark> {
     static Tag = Tags.Placemark;
 
     data: Placemark = {};
 
-    openTag(tagName: string) {
+    openTag(tagName: string, attributes: Attributes) {
         switch (tagName) {
             case Tags.Description:
-                this.awaitText().then(description => {
+                this.awaitText().then((description) => {
                     this.data.description = description;
                 });
                 break;
 
             case Tags.Name:
-                this.awaitText().then(name => {
+                this.awaitText().then((name) => {
                     this.data.name = name;
                 });
                 break;
 
             case Tags.Style:
-                this.await(this.parseStyle());
+                this.await(this.parseStyle(attributes));
                 break;
 
             case Tags.StyleUrl:
-                this.awaitText().then(styleUrl => {
+                this.awaitText().then((styleUrl) => {
                     this.data.styleUrl = styleUrl;
                 });
                 break;
@@ -44,8 +45,8 @@ export default class PlacemarkParser extends ParentParser<Placemark> {
         }
     }
 
-    async parseStyle() {
-        const styleParser = new StyleParser(this.stream);
+    async parseStyle(attributes: Attributes) {
+        const styleParser = new StyleParser(this.stream, attributes);
         this.data.style = await styleParser.parse();
     }
 

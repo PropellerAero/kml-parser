@@ -7,7 +7,7 @@ export default class FolderParser extends ParentParser<Folder> {
     static Tag = Tags.Folder;
 
     data: Folder = {
-        name: 'DEFAULT',
+        name: '',
         placemarks: [],
         folders: [],
     };
@@ -19,7 +19,7 @@ export default class FolderParser extends ParentParser<Folder> {
                 break;
 
             case Tags.Name:
-                this.awaitText().then(name => {
+                this.awaitText().then((name) => {
                     this.data.name = name;
                 });
                 break;
@@ -39,6 +39,10 @@ export default class FolderParser extends ParentParser<Folder> {
     async parseChildFolder() {
         const folderParser = new FolderParser(this.stream, this.options);
         const folder = await folderParser.parse();
-        this.data.folders.push(folder);
+        if (!folder.name) {
+            this.data.placemarks.push(...folder.placemarks);
+        } else {
+            this.data.folders.push(folder);
+        }
     }
 }

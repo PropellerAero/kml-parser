@@ -1,6 +1,11 @@
 {
     "parser": "babel-eslint",
-    "extends": ["airbnb-base", "prettier", "prettier/standard"],
+    "extends": [
+        "eslint:recommended",
+        "airbnb-base",
+        "prettier",
+        "prettier/standard"
+    ],
     "rules": {
         "prettier/prettier": "error",
         "quotes": "off",

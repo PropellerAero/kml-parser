@@ -4,11 +4,20 @@ import { Tags } from './tags';
 import LineStyleParser from './LineStyleParser';
 import PolyStyleParser from './PolyStyleParser';
 import LabelStyleParser from './LabelStyleParser';
+import ParserStream from './ParserStream';
+import { ParserOptions } from './BaseParser';
 
 export default class StyleParser extends ParentParser<Style> {
     static Tag = Tags.Style;
 
-    data: Style = {};
+    data: Style;
+
+    constructor(stream: ParserStream, options?: ParserOptions) {
+        super(stream, options);
+        this.data = {
+            id: options && options.attributes && options.attributes.id,
+        };
+    }
 
     openTag(name: string) {
         switch (name) {

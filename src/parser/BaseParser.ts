@@ -3,8 +3,6 @@ import { ConvertCoordinate } from '../types/kml';
 import Parser from '../types/parser';
 import ParserStream from './ParserStream';
 
-type StreamEventHandler = (...args: any[]) => void;
-
 export type ParserOptions = {
     convertCoordinate?: ConvertCoordinate;
     tag?: string;
@@ -48,6 +46,8 @@ export default class BaseParser<T> implements Parser {
     }
 
     text(text: string) {}
+
+    cdata(text: string) {}
 
     finish() {}
 
