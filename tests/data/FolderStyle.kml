@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+    <Document id="root_doc">
+        <Folder>
+            <Style id="Polyline-DEFAULT">
+                <LineStyle>
+                    <color>ff0000ff</color>
+                    <width>1</width>
+                </LineStyle>
+            </Style>
+            <name>My Polylines</name>
+            <Placemark>
+                <styleUrl>#Polyline-DEFAULT</styleUrl>
+                <description>Polyline 1</description>
+                <LineString>
+                    <altitudeMode>clampToGround</altitudeMode>
+                    <coordinates>150.0,30.0,0 150.0,35.0,0 145.0,30.0,0</coordinates>
+                </LineString>
+            </Placemark>
+        </Folder>
+    </Document>
+</kml>

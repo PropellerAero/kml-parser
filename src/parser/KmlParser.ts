@@ -1,10 +1,9 @@
-import XmlParser from 'node-xml-stream';
 import { merge } from 'lodash';
 import { Attributes } from '../types/node-xml-stream';
 import { Tags } from './tags';
 import BaseParser, { ParserOptions } from './BaseParser';
 import FolderParser from './FolderParser';
-import { Design, Layer } from '../types/design';
+import { Design } from '../types/design';
 import hexToLong from '../utils/hexToLong';
 import { Folder, StyleMap, Style } from '../types/kml';
 import StyleMapParser from './StyleMapParser';
@@ -12,7 +11,7 @@ import ParserStream from './ParserStream';
 import StyleParser from './StyleParser';
 
 const ENTITY_HANDLE_OFFSET = 10;
-const DEFAULT_COLOR = 0xffffff;
+const DEFAULT_COLOR = 0xffdd00;
 const DEFAULT_POSITION = { x: 0, y: 0, z: 0 };
 
 export default class KmlParser extends BaseParser<Design> {
@@ -116,7 +115,9 @@ export default class KmlParser extends BaseParser<Design> {
     }
 
     processFolder(folder: Folder) {
-        const { name: layerName, placemarks, folders } = folder;
+        const { name: layerName, placemarks, folders, styles } = folder;
+
+        this.styles = { ...this.styles, ...styles };
 
         folders.forEach((f) => this.processFolder(f));
 

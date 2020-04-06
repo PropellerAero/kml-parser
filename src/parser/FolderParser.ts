@@ -2,6 +2,8 @@ import { Tags } from './tags';
 import { Folder } from '../types/kml';
 import ParentParser from './ParentParser';
 import PlacemarkParser from './PlacemarkParser';
+import { Attributes } from '../types/node-xml-stream';
+import StyleParser from './StyleParser';
 
 export default class FolderParser extends ParentParser<Folder> {
     static Tag = Tags.Folder;
@@ -10,9 +12,10 @@ export default class FolderParser extends ParentParser<Folder> {
         name: '',
         placemarks: [],
         folders: [],
+        styles: {},
     };
 
-    openTag(tagName: string) {
+    openTag(tagName: string, attributes: Attributes) {
         switch (tagName) {
             case Tags.Folder:
                 this.await(this.parseChildFolder());
@@ -27,6 +30,21 @@ export default class FolderParser extends ParentParser<Folder> {
             case Tags.Placemark:
                 this.await(this.parsePlacemark());
                 break;
+
+            case Tags.Style:
+                this.await(this.parseStyle(attributes));
+                break;
+        }
+    }
+
+    async parseStyle(attributes: Attributes) {
+        const styleParser = new StyleParser(this.stream, {
+            ...this.options,
+            attributes,
+        });
+        const style = await styleParser.parse();
+        if (style.id) {
+            this.data.styles[style.id] = style;
         }
     }
 

@@ -12,6 +12,9 @@ export type Folder = {
     name: string;
     placemarks: Array<Placemark>;
     folders: Array<Folder>;
+    styles: {
+        [id: string]: Style;
+    };
 };
 
 export type Placemark = {
