@@ -43,7 +43,7 @@ describe('KmlParser', () => {
 
     it('should parse a kml stream and return a design object with with cdata text', async (done) => {
         const stream = fs.createReadStream(
-            path.join(__dirname, './data/PointCData.kml')
+            path.join(__dirname, './data/PointCDATA.kml')
         );
         const parser = new KmlParser(stream);
         const output = await parser.parse();
