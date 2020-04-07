@@ -3,6 +3,7 @@ export default {
     entities: [
         {
             color: 16711680,
+            name: 'Text 1',
             text: 'Text 1',
             extendedData: {
                 customStrings: ['Text 1'],
@@ -18,6 +19,7 @@ export default {
         },
         {
             color: 16711680,
+            name: 'Text 1',
             extendedData: {
                 customStrings: ['Text 1'],
             },

@@ -12,6 +12,7 @@ export interface BaseEntity {
         customStrings: Array<string>;
     };
     layer: string;
+    name?: string;
 }
 
 export interface Polyline extends BaseEntity {

@@ -5,14 +5,16 @@ import BaseParser, { ParserOptions } from './BaseParser';
 import FolderParser from './FolderParser';
 import { Design } from '../types/design';
 import hexToLong from '../utils/hexToLong';
-import { Folder, StyleMap, Style } from '../types/kml';
+import { Folder, StyleMap, Style, Placemark } from '../types/kml';
 import StyleMapParser from './StyleMapParser';
 import ParserStream from './ParserStream';
 import StyleParser from './StyleParser';
+import PlacemarkParser from './PlacemarkParser';
 
 const ENTITY_HANDLE_OFFSET = 10;
 const DEFAULT_COLOR = 0xffdd00;
 const DEFAULT_POSITION = { x: 0, y: 0, z: 0 };
+const DEFAULT_FOLDER_NAME = 'DEFAULT';
 
 export default class KmlParser extends BaseParser<Design> {
     data: Design;
@@ -51,6 +53,8 @@ export default class KmlParser extends BaseParser<Design> {
             case Tags.Style:
                 this.await(this.parseStyle(attributes));
                 break;
+            case Tags.Placemark:
+                this.await(this.parsePlacemark());
             default:
                 break;
         }
@@ -82,6 +86,15 @@ export default class KmlParser extends BaseParser<Design> {
         this.folders.push(folder);
     }
 
+    async parsePlacemark() {
+        const placemarkParser = new PlacemarkParser(this.stream, this.options);
+        const placemark = await placemarkParser.parse();
+        this.data.tables.layer.layers[DEFAULT_FOLDER_NAME] = {
+            name: DEFAULT_FOLDER_NAME,
+        };
+        this.processPlacemark(placemark, DEFAULT_FOLDER_NAME);
+    }
+
     getSharedEntityProperties(options: {
         layerName: string;
         color?: string;
@@ -91,6 +104,7 @@ export default class KmlParser extends BaseParser<Design> {
         const { layerName, color, name, description } = options;
         const customString = description || name;
         return {
+            name,
             handle: `${ENTITY_HANDLE_OFFSET + this.data.entities.length}`,
             layer: layerName,
             color: color ? hexToLong(color) : DEFAULT_COLOR,
@@ -124,51 +138,45 @@ export default class KmlParser extends BaseParser<Design> {
         if (!placemarks.length) return;
 
         this.data.tables.layer.layers[layerName] = { name: layerName };
+
         placemarks.forEach((placemark) => {
-            const {
-                description,
-                lineString,
-                style,
-                name,
-                point,
-                styleUrl,
-            } = placemark;
+            this.processPlacemark(placemark, layerName);
+        });
+    }
 
-            const refStyle = this.getStyle(styleUrl);
-            const { lineStyle, labelStyle }: Style = merge({}, refStyle, style);
+    processPlacemark(placemark: Placemark, layerName: string) {
+        const {
+            description,
+            lineString,
+            style,
+            name,
+            point,
+            styleUrl,
+        } = placemark;
 
-            if (lineString) {
+        const refStyle = this.getStyle(styleUrl);
+        const { lineStyle, labelStyle }: Style = merge({}, refStyle, style);
+
+        if (lineString) {
+            this.data.entities.push({
+                type: 'POLYLINE',
+                vertices: lineString.coordinates || [],
+                ...this.getSharedEntityProperties({
+                    layerName,
+                    name,
+                    description,
+                    color: lineStyle?.color,
+                }),
+            });
+        }
+
+        if (point) {
+            const position = point.coordinate || DEFAULT_POSITION;
+
+            if (name) {
                 this.data.entities.push({
-                    type: 'POLYLINE',
-                    vertices: lineString.coordinates || [],
-                    ...this.getSharedEntityProperties({
-                        layerName,
-                        name,
-                        description,
-                        color: lineStyle?.color,
-                    }),
-                });
-            }
-
-            if (point) {
-                const position = point.coordinate || DEFAULT_POSITION;
-
-                if (name) {
-                    this.data.entities.push({
-                        type: 'TEXT',
-                        text: name,
-                        position,
-                        ...this.getSharedEntityProperties({
-                            layerName,
-                            name,
-                            description,
-                            color: labelStyle?.color,
-                        }),
-                    });
-                }
-
-                this.data.entities.push({
-                    type: 'POINT',
+                    type: 'TEXT',
+                    text: name,
                     position,
                     ...this.getSharedEntityProperties({
                         layerName,
@@ -178,7 +186,18 @@ export default class KmlParser extends BaseParser<Design> {
                     }),
                 });
             }
-        });
+
+            this.data.entities.push({
+                type: 'POINT',
+                position,
+                ...this.getSharedEntityProperties({
+                    layerName,
+                    name,
+                    description,
+                    color: labelStyle?.color,
+                }),
+            });
+        }
     }
 
     finish() {
