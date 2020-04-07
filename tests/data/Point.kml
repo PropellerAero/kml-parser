@@ -18,7 +18,7 @@
                 <description>Point 1</description>
                 <Style>
                     <LabelStyle>
-                        <color>ff0000ff</color>
+                        <color>ffff0000</color>
                         <colorMode>normal</colorMode>
                         <scale>1</scale>
                     </LabelStyle>
@@ -31,7 +31,7 @@
                 <description>Point 2</description>
                 <Style>
                     <LabelStyle>
-                        <color>ffdd00ff</color>
+                        <color>ffffdd00</color>
                         <colorMode>normal</colorMode>
                         <scale>1</scale>
                     </LabelStyle>

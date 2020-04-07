@@ -147,6 +147,7 @@ export default class DesignBuilder {
         name,
         description,
     }: BuildPolylineOptions) {
+        console.log(name, style);
         this.design.entities.push({
             type: 'POLYLINE',
             vertices,

@@ -18,11 +18,11 @@
                 <description>Polyline 1</description>
                 <Style>
                     <LineStyle>
-                        <color>ff0000ff</color>
+                        <color>ffff0000</color>
                         <width>2</width>
                     </LineStyle>
                     <PolyStyle>
-                        <color>ffdd00ff</color>
+                        <color>ffffdd00</color>
                         <fill>0</fill>
                         <outline>0</outline>
                     </PolyStyle>
@@ -36,7 +36,7 @@
                 <description>Polyline 2</description>
                 <Style>
                     <LineStyle>
-                        <color>ff0000ff</color>
+                        <color>ffff0000</color>
                     </LineStyle>
                     <PolyStyle>
                         <fill>0</fill>
