@@ -24,6 +24,6 @@ export default class StyleMapParser extends ParentParser<StyleMap> {
     async parseStylePair() {
         const stylePairParser = new StylePairParser(this.stream, this.options);
         const stylePair = await stylePairParser.parse();
-        this.data.styles[stylePair.key] = stylePair.style;
+        this.data.styles[stylePair.key] = stylePair;
     }
 }

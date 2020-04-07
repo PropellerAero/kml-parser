@@ -7,7 +7,7 @@ import { Attributes } from '../types/node-xml-stream';
 export default class StylePairParser extends ParentParser<StylePair> {
     static Tag = Tags.Pair;
 
-    data: StylePair = { key: '', style: {} };
+    data: StylePair = { key: '' };
 
     openTag(name: string, attributes: Attributes) {
         switch (name) {
@@ -18,6 +18,11 @@ export default class StylePairParser extends ParentParser<StylePair> {
                 break;
             case Tags.Style:
                 this.await(this.parseStyle(attributes));
+                break;
+            case Tags.StyleUrl:
+                this.awaitText().then((styleUrl) => {
+                    this.data.styleUrl = styleUrl;
+                });
                 break;
         }
     }

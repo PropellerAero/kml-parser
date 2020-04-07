@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+    <Document id="root_doc">
+        <Style id="Style1">
+            <LineStyle>
+                <color>ff0000ff</color>
+                <width>1</width>
+            </LineStyle>
+            <PolyStyle>
+                <color>ffdd00ff</color>
+                <fill>0</fill>
+                <outline>0</outline>
+            </PolyStyle>
+        </Style>
+        <Style id="Style2">
+            <LineStyle>
+                <color>ff0000ff</color>
+                <width>1</width>
+            </LineStyle>
+            <PolyStyle>
+                <color>ffdd00ff</color>
+                <fill>0</fill>
+                <outline>0</outline>
+            </PolyStyle>
+        </Style>
+        <StyleMap id="Polyline-DEFAULT">
+            <Pair>
+                <key>normal</key>
+                <styleUrl>#Style1</styleUrl>
+            </Pair>
+            <Pair>
+                <key>highlight</key>
+                <styleUrl>#Style2</styleUrl>
+            </Pair>
+        </StyleMap>
+        <Folder>
+            <name>My Polylines</name>
+            <Placemark>
+                <styleUrl>#Polyline-DEFAULT</styleUrl>
+                <description>Polyline 1</description>
+                <LineString>
+                    <altitudeMode>clampToGround</altitudeMode>
+                    <coordinates>150.0,30.0,0 150.0,35.0,0 145.0,30.0,0</coordinates>
+                </LineString>
+            </Placemark>
+        </Folder>
+    </Document>
+</kml>

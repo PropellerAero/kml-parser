@@ -45,13 +45,14 @@ export type LabelStyle = {
 
 export type StylePair = {
     key: string;
-    style: Style;
+    style?: Style;
+    styleUrl?: string;
 };
 
 export type StyleMap = {
     id: string;
     styles: {
-        [key: string]: Style;
+        [key: string]: StylePair;
     };
 };
 

@@ -82,6 +82,16 @@ describe('KmlParser', () => {
         done();
     });
 
+    it('should parse a kml stream and return a design object using style maps with style url', async (done) => {
+        const stream = fs.createReadStream(
+            path.join(__dirname, './data/StyleMapUrl.kml')
+        );
+        const parser = new KmlParser(stream);
+        const output = await parser.parse();
+        expect(output).toEqual(StyleMap);
+        done();
+    });
+
     it('should parse a kml stream and return a design object using a folder style', async (done) => {
         const stream = fs.createReadStream(
             path.join(__dirname, './data/FolderStyle.kml')

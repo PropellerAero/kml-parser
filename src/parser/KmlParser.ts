@@ -125,7 +125,15 @@ export default class KmlParser extends BaseParser<Design> {
         }
 
         const styleMap = this.styleMaps[id];
-        return styleMap && merge({}, ...Object.values(styleMap.styles));
+        return (
+            styleMap &&
+            merge(
+                {},
+                ...Object.values(styleMap.styles).map((stylePair) => {
+                    return stylePair.style || this.getStyle(stylePair.styleUrl);
+                })
+            )
+        );
     }
 
     processFolder(folder: Folder) {
