@@ -6,7 +6,7 @@
             <Style>
                 <LineStyle>
                     <color>ff0000ff</color>
-                    <width>1</width>
+                    <width>2</width>
                 </LineStyle>
                 <PolyStyle>
                     <color>ffdd00ff</color>

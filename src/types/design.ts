@@ -19,6 +19,7 @@ export interface Polyline extends BaseEntity {
     type: 'POLYLINE';
     color: number;
     vertices: Array<Cartesian3>;
+    lineWidth: number;
 }
 
 export interface Point extends BaseEntity {

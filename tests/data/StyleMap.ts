@@ -9,6 +9,7 @@ export default {
             handle: '10',
             layer: 'My Polylines',
             type: 'POLYLINE',
+            lineWidth: 1,
             vertices: [
                 {
                     x: 150,

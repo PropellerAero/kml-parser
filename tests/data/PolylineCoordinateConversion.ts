@@ -9,6 +9,7 @@ export default {
             handle: '10',
             layer: 'My Polylines',
             type: 'POLYLINE',
+            lineWidth: 1,
             vertices: [
                 {
                     x: 121,
@@ -35,6 +36,7 @@ export default {
             handle: '11',
             layer: 'My Polylines',
             type: 'POLYLINE',
+            lineWidth: 2,
             vertices: [
                 {
                     x: 151,
