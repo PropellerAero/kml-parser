@@ -117,13 +117,13 @@ export default class DesignBuilder {
         }
 
         if (point && point.coordinate) {
-            const position = point.coordinate || DEFAULT_POSITION;
+            const position = point.coordinate;
 
             if (name) {
                 this.buildText({
                     layerName,
                     text: name,
-                    position: point.coordinate,
+                    position,
                     name,
                     description,
                     style: combinedStyle,
@@ -132,7 +132,7 @@ export default class DesignBuilder {
 
             this.buildPoint({
                 layerName,
-                position: point.coordinate,
+                position,
                 name,
                 description,
                 style: combinedStyle,

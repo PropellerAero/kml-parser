@@ -5,10 +5,10 @@ describe('hexToLong', () => {
         expect(hexToLong('ffffffff')).toEqual(0xffffff);
     });
     it('should be case insensitive', () => {
-        expect(hexToLong('FFFFDD00')).toEqual(0xffdd00);
+        expect(hexToLong('FF00DDFF')).toEqual(0xffdd00);
     });
     it('should ignore alpha', () => {
-        expect(hexToLong('ff0000ff')).toEqual(0x0000ff);
+        expect(hexToLong('ff0000ff')).toEqual(0xff0000);
     });
     it('should default to white', () => {
         expect(hexToLong('amethyst')).toEqual(0xffffff);

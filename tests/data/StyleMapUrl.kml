@@ -3,22 +3,22 @@
     <Document id="root_doc">
         <Style id="Style1">
             <LineStyle>
-                <color>ffff0000</color>
+                <color>ff0000ff</color>
                 <width>1</width>
             </LineStyle>
             <PolyStyle>
-                <color>ffffdd00</color>
+                <color>ff00ddff</color>
                 <fill>0</fill>
                 <outline>0</outline>
             </PolyStyle>
         </Style>
         <Style id="Style2">
             <LineStyle>
-                <color>ffff0000</color>
+                <color>ff0000ff</color>
                 <width>1</width>
             </LineStyle>
             <PolyStyle>
-                <color>ffffdd00</color>
+                <color>ff00ddff</color>
                 <fill>0</fill>
                 <outline>0</outline>
             </PolyStyle>

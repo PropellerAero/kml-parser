@@ -3,7 +3,7 @@
     <Document id="root_doc">
         <Style id="Polyline-DEFAULT">
             <LineStyle>
-                <color>ffff0000</color>
+                <color>ff0000ff</color>
                 <width>1</width>
             </LineStyle>
         </Style>

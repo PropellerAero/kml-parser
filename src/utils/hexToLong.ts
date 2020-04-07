@@ -7,7 +7,7 @@ const hexToLong = (hex: string) => {
         return 0xffffff;
     }
 
-    const [, a, r, g, b] = match;
+    const [, a, b, g, r] = match;
 
     const red = parseInt(r, 16) << 16;
     const green = parseInt(g, 16) << 8;
