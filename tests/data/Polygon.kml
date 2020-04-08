@@ -217,9 +217,10 @@
                 </Data>
             </ExtendedData>
             <Polygon>
+                <tessellate>8</tessellate>
+                <altitudeMode>clampToGround</altitudeMode>
                 <outerBoundaryIs>
                     <LinearRing>
-                        <altitudeMode>clampToGround</altitudeMode>
                         <coordinates>153.03466666522544,-26.72905002138941 153.0348089465192,-26.729558330682092 153.0348495983174,-26.730128360544665 153.03514635644433,-26.730712910494954 153.0353170939968,-26.730796417385548 153.0355366137071,-26.730716541230613 153.03631712823272,-26.729725346096863 153.03594719686902,-26.729100852420863 153.0353983975932,-26.728784973500275 153.03466666522544,-26.72905002138941</coordinates>
                     </LinearRing>
                 </outerBoundaryIs>

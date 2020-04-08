@@ -16,14 +16,14 @@ export default class PolygonParser extends ParentParser<Polygon> {
                 this.awaitNumber().then((tessellate) => {
                     this.data.tessellate = tessellate;
                 });
-
                 break;
+
             case Tags.AltitudeMode:
                 this.awaitText().then((altitudeMode) => {
                     this.data.altitudeMode = <AltitudeMode>altitudeMode;
                 });
-
                 break;
+
             case Tags.OuterBoundaryIs:
                 this.await(this.parseLinearRing());
                 break;
