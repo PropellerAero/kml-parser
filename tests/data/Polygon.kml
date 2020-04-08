@@ -1,0 +1,231 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+    <Document>
+        <name>Places - My Places</name>
+        <Style id="mcffffffffms08miuhttpmapsgooglecommapfileskmlshapesdonutpng">
+            <IconStyle>
+                <Icon>
+                    <href>http://maps.google.com/mapfiles/kml/shapes/donut.png</href>
+                </Icon>
+                <color>ffffffff</color>
+                <scale>0.8</scale>
+            </IconStyle>
+        </Style>
+        <Placemark>
+            <name>1</name>
+            <ExtendedData>
+                <Data name="qldglobe_place_name">
+                    <value>1</value>
+                </Data>
+                <Data name="_labelid">
+                    <value>places-label-1567060468814-1</value>
+                </Data>
+                <Data name="Lat/Long">
+                    <value>-26.72878,153.03540</value>
+                </Data>
+            </ExtendedData>
+            <Point>
+                <coordinates>153.03540494727062,-26.72878411887124</coordinates>
+            </Point>
+            <styleUrl>#mcffffffffms08miuhttpmapsgooglecommapfileskmlshapesdonutpng</styleUrl>
+        </Placemark>
+        <Placemark>
+            <name>2</name>
+            <ExtendedData>
+                <Data name="qldglobe_place_name">
+                    <value>2</value>
+                </Data>
+                <Data name="_labelid">
+                    <value>places-label-1567060533607-3</value>
+                </Data>
+                <Data name="Lat/Long">
+                    <value>-26.72910,153.03593</value>
+                </Data>
+            </ExtendedData>
+            <Point>
+                <coordinates>153.0359285882541,-26.72910110167747</coordinates>
+            </Point>
+            <styleUrl>#mcffffffffms08miuhttpmapsgooglecommapfileskmlshapesdonutpng</styleUrl>
+        </Placemark>
+        <Placemark>
+            <name>3</name>
+            <ExtendedData>
+                <Data name="qldglobe_place_name">
+                    <value>3</value>
+                </Data>
+                <Data name="_labelid">
+                    <value>places-label-1567060560215-5</value>
+                </Data>
+                <Data name="Lat/Long">
+                    <value>-26.72972,153.03630</value>
+                </Data>
+            </ExtendedData>
+            <Point>
+                <coordinates>153.0362998154487,-26.729722964808502</coordinates>
+            </Point>
+            <styleUrl>#mcffffffffms08miuhttpmapsgooglecommapfileskmlshapesdonutpng</styleUrl>
+        </Placemark>
+        <Placemark>
+            <name>4</name>
+            <ExtendedData>
+                <Data name="qldglobe_place_name">
+                    <value>4</value>
+                </Data>
+                <Data name="_labelid">
+                    <value>places-label-1567060608479-7</value>
+                </Data>
+                <Data name="Lat/Long">
+                    <value>-26.73067,153.03557</value>
+                </Data>
+            </ExtendedData>
+            <Point>
+                <coordinates>153.03556652997918,-26.730670778332335</coordinates>
+            </Point>
+            <styleUrl>#mcffffffffms08miuhttpmapsgooglecommapfileskmlshapesdonutpng</styleUrl>
+        </Placemark>
+        <Placemark>
+            <name>5</name>
+            <ExtendedData>
+                <Data name="qldglobe_place_name">
+                    <value>5</value>
+                </Data>
+                <Data name="_labelid">
+                    <value>places-label-1567060642024-9</value>
+                </Data>
+                <Data name="Lat/Long">
+                    <value>-26.73070,153.03554</value>
+                </Data>
+            </ExtendedData>
+            <Point>
+                <coordinates>153.03554358204002,-26.73070043872936</coordinates>
+            </Point>
+            <styleUrl>#mcffffffffms08miuhttpmapsgooglecommapfileskmlshapesdonutpng</styleUrl>
+        </Placemark>
+        <Placemark>
+            <name>6</name>
+            <ExtendedData>
+                <Data name="qldglobe_place_name">
+                    <value>6</value>
+                </Data>
+                <Data name="_labelid">
+                    <value>places-label-1567060673542-11</value>
+                </Data>
+                <Data name="Lat/Long">
+                    <value>-26.73079,153.03532</value>
+                </Data>
+            </ExtendedData>
+            <Point>
+                <coordinates>153.03531595824302,-26.73079201470403</coordinates>
+            </Point>
+            <styleUrl>#mcffffffffms08miuhttpmapsgooglecommapfileskmlshapesdonutpng</styleUrl>
+        </Placemark>
+        <Placemark>
+            <name>7</name>
+            <ExtendedData>
+                <Data name="qldglobe_place_name">
+                    <value>7</value>
+                </Data>
+                <Data name="_labelid">
+                    <value>places-label-1567060705158-13</value>
+                </Data>
+                <Data name="Lat/Long">
+                    <value>-26.73071,153.03515</value>
+                </Data>
+            </ExtendedData>
+            <Point>
+                <coordinates>153.03515301541634,-26.730706173718445</coordinates>
+            </Point>
+            <styleUrl>#mcffffffffms08miuhttpmapsgooglecommapfileskmlshapesdonutpng</styleUrl>
+        </Placemark>
+        <Placemark>
+            <name>8</name>
+            <ExtendedData>
+                <Data name="qldglobe_place_name">
+                    <value>8</value>
+                </Data>
+                <Data name="_labelid">
+                    <value>places-label-1567060755174-15</value>
+                </Data>
+                <Data name="Lat/Long">
+                    <value>-26.73013,153.03485</value>
+                </Data>
+            </ExtendedData>
+            <Point>
+                <coordinates>153.0348513720085,-26.730129656498182</coordinates>
+            </Point>
+            <styleUrl>#mcffffffffms08miuhttpmapsgooglecommapfileskmlshapesdonutpng</styleUrl>
+        </Placemark>
+        <Placemark>
+            <name>9</name>
+            <ExtendedData>
+                <Data name="qldglobe_place_name">
+                    <value>9</value>
+                </Data>
+                <Data name="_labelid">
+                    <value>places-label-1567060782350-17</value>
+                </Data>
+                <Data name="Lat/Long">
+                    <value>-26.72956,153.03482</value>
+                </Data>
+            </ExtendedData>
+            <Point>
+                <coordinates>153.03481647689065,-26.72956303500228</coordinates>
+            </Point>
+            <styleUrl>#mcffffffffms08miuhttpmapsgooglecommapfileskmlshapesdonutpng</styleUrl>
+        </Placemark>
+        <Placemark>
+            <name>10</name>
+            <ExtendedData>
+                <Data name="qldglobe_place_name">
+                    <value>10</value>
+                </Data>
+                <Data name="_labelid">
+                    <value>places-label-1567060809829-19</value>
+                </Data>
+                <Data name="Lat/Long">
+                    <value>-26.72905,153.03467</value>
+                </Data>
+            </ExtendedData>
+            <Point>
+                <coordinates>153.03467019861932,-26.72904604571631</coordinates>
+            </Point>
+            <styleUrl>#mcffffffffms08miuhttpmapsgooglecommapfileskmlshapesdonutpng</styleUrl>
+        </Placemark>
+        <Style id="sffffffsw3mo1ffffffffo014901960784313725">
+            <LineStyle>
+                <color>ffffffff</color>
+                <width>3</width>
+            </LineStyle>
+            <PolyStyle>
+                <color>26ffffff</color>
+            </PolyStyle>
+        </Style>
+        <Placemark>
+            <name>My Place 1</name>
+            <ExtendedData>
+                <Data name="qldglobe_place_name">
+                    <value>My Place 1</value>
+                </Data>
+                <Data name="_labelid">
+                    <value>places-label-1567060853698-21</value>
+                </Data>
+                <Data name="Perimeter">
+                    <value>591.68 m</value>
+                </Data>
+                <Data name="Area">
+                    <value>2.29 hectares</value>
+                </Data>
+            </ExtendedData>
+            <Polygon>
+                <tessellate>8</tessellate>
+                <altitudeMode>clampToGround</altitudeMode>
+                <outerBoundaryIs>
+                    <LinearRing>
+                        <coordinates>153.03466666522544,-26.72905002138941 153.0348089465192,-26.729558330682092 153.0348495983174,-26.730128360544665 153.03514635644433,-26.730712910494954 153.0353170939968,-26.730796417385548 153.0355366137071,-26.730716541230613 153.03631712823272,-26.729725346096863 153.03594719686902,-26.729100852420863 153.0353983975932,-26.728784973500275 153.03466666522544,-26.72905002138941</coordinates>
+                    </LinearRing>
+                </outerBoundaryIs>
+            </Polygon>
+            <styleUrl>#sffffffsw3mo1ffffffffo014901960784313725</styleUrl>
+        </Placemark>
+    </Document>
+</kml>
