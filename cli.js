@@ -3,7 +3,9 @@ const path = require('path');
 require('regenerator-runtime');
 const KmlParser = require('./dist/parser/KmlParser').default;
 
-const stream = fs.createReadStream(process.argv[2]);
+const filePath = path.resolve(process.argv[2]);
+
+const stream = fs.createReadStream(filePath);
 
 const kmlParser = new KmlParser(stream);
 
