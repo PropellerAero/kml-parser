@@ -1,5 +1,5 @@
 import { merge } from 'lodash';
-import { Style, Placemark, StyleMap, Folder } from '../types/kml';
+import { Style, Placemark, StyleMap, Folder, ExtendedData } from '../types/kml';
 import { Layer, Design, Cartesian3 } from '../types/design';
 import hexToLong from '../utils/hexToLong';
 
@@ -15,7 +15,7 @@ type SharedEntitiyProperties = {
     name?: string;
     extendedData?: {
         customStrings: Array<string>;
-    };
+    } & ExtendedData;
 };
 
 type BaseBuildOptions = {
@@ -23,6 +23,7 @@ type BaseBuildOptions = {
     style?: Style;
     name?: string;
     description?: string;
+    extendedData?: Array<ExtendedData>;
 };
 
 type BuildPolylineOptions = {
@@ -102,6 +103,7 @@ export default class DesignBuilder {
             point,
             styleUrl,
             polygon,
+            extendedData,
         } = placemark;
 
         const refStyle = this.getStyle(styleUrl);
@@ -114,6 +116,7 @@ export default class DesignBuilder {
                 vertices: lineString.coordinates,
                 name,
                 description,
+                extendedData,
             });
         }
 
@@ -128,6 +131,7 @@ export default class DesignBuilder {
                 vertices: polygon.outerBoundary.coordinates,
                 name,
                 description,
+                extendedData,
             });
         }
 
@@ -142,6 +146,7 @@ export default class DesignBuilder {
                     name,
                     description,
                     style: combinedStyle,
+                    extendedData,
                 });
             }
 
@@ -151,6 +156,7 @@ export default class DesignBuilder {
                 name,
                 description,
                 style: combinedStyle,
+                extendedData,
             });
         }
     }
@@ -161,6 +167,7 @@ export default class DesignBuilder {
         vertices,
         name,
         description,
+        extendedData,
     }: BuildPolylineOptions) {
         this.design.entities.push({
             type: 'POLYLINE',
@@ -171,6 +178,7 @@ export default class DesignBuilder {
                 name,
                 description,
                 color: style?.lineStyle?.color,
+                extendedData,
             }),
         });
     }
@@ -181,6 +189,7 @@ export default class DesignBuilder {
         position,
         name,
         description,
+        extendedData,
     }: BuildPointOptions) {
         this.design.entities.push({
             type: 'POINT',
@@ -190,6 +199,7 @@ export default class DesignBuilder {
                 name,
                 description,
                 color: style?.labelStyle?.color || style?.lineStyle?.color,
+                extendedData,
             }),
         });
     }
@@ -201,6 +211,7 @@ export default class DesignBuilder {
         text,
         name,
         description,
+        extendedData,
     }: BuildTextOptions) {
         this.design.entities.push({
             type: 'TEXT',
@@ -211,6 +222,7 @@ export default class DesignBuilder {
                 name,
                 description,
                 color: style?.labelStyle?.color,
+                extendedData,
             }),
         });
     }
@@ -220,8 +232,9 @@ export default class DesignBuilder {
         color?: string;
         name?: string;
         description?: string;
+        extendedData?: Array<ExtendedData>;
     }) {
-        const { layerName, color, name, description } = options;
+        const { layerName, color, name, description, extendedData } = options;
         const customString = description || name;
         const properties: SharedEntitiyProperties = {
             handle: `${ENTITY_HANDLE_OFFSET + this.design.entities.length}`,
@@ -237,6 +250,18 @@ export default class DesignBuilder {
             properties.extendedData = {
                 customStrings: [customString],
             };
+
+            if (extendedData && extendedData.length) {
+                for (const data of extendedData) {
+                    const { name, value } = data;
+                    if (name && value) {
+                        properties.extendedData = {
+                            ...properties.extendedData,
+                            [name]: value,
+                        };
+                    }
+                }
+            }
         }
 
         return properties;

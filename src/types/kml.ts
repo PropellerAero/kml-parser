@@ -25,6 +25,12 @@ export type Placemark = {
     point?: Point;
     styleUrl?: string;
     polygon?: Polygon;
+    extendedData?: Array<ExtendedData>;
+};
+
+export type ExtendedData = {
+    name?: string;
+    value?: any;
 };
 
 export type LineStyle = {

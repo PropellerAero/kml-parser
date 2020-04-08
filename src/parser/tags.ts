@@ -3,8 +3,10 @@ export const Tags = {
     Color: 'color',
     ColorMode: 'colorMode',
     Coordinates: 'coordinates',
+    Data: 'Data',
     Description: 'description',
     Document: 'Document',
+    ExtendedData: 'ExtendedData',
     Fill: 'fill',
     Folder: 'Folder',
     Iconstyle: 'IconStyle',
@@ -31,5 +33,6 @@ export const Tags = {
     StyleMap: 'StyleMap',
     StyleUrl: 'styleUrl',
     Tessellate: 'tessellate',
+    Value: 'value',
     Width: 'width',
 };
