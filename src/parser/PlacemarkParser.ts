@@ -2,6 +2,7 @@ import { Placemark } from '../types/kml';
 import { Tags } from './tags';
 import LineStringParser from './LineStringParser';
 import PointParser from './PointParser';
+import PolygonParser from './PolygonParser';
 import ParentParser from './ParentParser';
 import StyleParser from './StyleParser';
 import { Attributes } from '../types/node-xml-stream';
@@ -42,6 +43,10 @@ export default class PlacemarkParser extends ParentParser<Placemark> {
             case Tags.Point:
                 this.await(this.parsePoint());
                 break;
+
+            case Tags.Polygon:
+                this.await(this.parsePolygon());
+                break;
         }
     }
 
@@ -63,5 +68,11 @@ export default class PlacemarkParser extends ParentParser<Placemark> {
         const pointParser = new PointParser(this.stream, this.options);
         const point = await pointParser.parse();
         this.data.point = point;
+    }
+
+    async parsePolygon() {
+        const polygonParser = new PolygonParser(this.stream, this.options);
+        const polygon = await polygonParser.parse();
+        this.data.polygon = polygon;
     }
 }

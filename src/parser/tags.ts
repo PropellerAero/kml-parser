@@ -14,6 +14,7 @@ export const Tags = {
     Labelstyle: 'LabelStyle',
     LabelStyle: 'LabelStyle',
     LineRing: 'LineRing',
+    LinearRing: 'LinearRing',
     LineString: 'LineString',
     LineStyle: 'LineStyle',
     Name: 'name',

@@ -101,6 +101,7 @@ export default class DesignBuilder {
             name,
             point,
             styleUrl,
+            polygon,
         } = placemark;
 
         const refStyle = this.getStyle(styleUrl);
@@ -111,6 +112,20 @@ export default class DesignBuilder {
                 layerName,
                 style: combinedStyle,
                 vertices: lineString.coordinates,
+                name,
+                description,
+            });
+        }
+
+        if (
+            polygon &&
+            polygon.outerBoundary &&
+            polygon.outerBoundary.coordinates
+        ) {
+            this.buildPolyline({
+                layerName,
+                style: combinedStyle,
+                vertices: polygon.outerBoundary.coordinates,
                 name,
                 description,
             });

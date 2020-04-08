@@ -24,6 +24,7 @@ export type Placemark = {
     lineString?: LineString;
     point?: Point;
     styleUrl?: string;
+    polygon?: Polygon;
 };
 
 export type LineStyle = {
@@ -64,7 +65,7 @@ export type Style = {
 };
 
 export type Polygon = {
-    tesselate: number;
+    tessellate: number;
     altitudeMode?: AltitudeMode;
     innerBoundary?: LinearRing;
     outerBoundary?: LinearRing;
