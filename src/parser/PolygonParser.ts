@@ -27,6 +27,9 @@ export default class PolygonParser extends ParentParser<Polygon> {
             case Tags.OuterBoundaryIs:
                 this.await(this.parseLinearRing());
                 break;
+
+            case Tags.InnerBoundaryIs:
+                break;
         }
     }
 
