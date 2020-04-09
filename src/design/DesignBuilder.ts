@@ -14,8 +14,8 @@ type SharedEntitiyProperties = {
     handle: string;
     name?: string;
     extendedData?: {
-        customStrings: Array<string>;
-    } & ExtendedData;
+        [key: string]: Array<string>;
+    };
 };
 
 type BaseBuildOptions = {
@@ -250,20 +250,20 @@ export default class DesignBuilder {
             properties.extendedData = {
                 customStrings: [customString],
             };
-
-            if (extendedData && extendedData.length) {
-                for (const data of extendedData) {
-                    const { name, value } = data;
-                    if (name && value) {
-                        properties.extendedData = {
-                            ...properties.extendedData,
-                            [name]: value,
-                        };
-                    }
-                }
-            }
         }
 
+        if (extendedData && extendedData.length) {
+            const extendedDataProperties = {};
+            extendedData.forEach(({ name, value }) => {
+                if (name && value) {
+                    extendedDataProperties[name] = [value];
+                }
+            });
+            properties.extendedData = {
+                ...properties.extendedData,
+                ...extendedDataProperties,
+            };
+        }
         return properties;
     }
 

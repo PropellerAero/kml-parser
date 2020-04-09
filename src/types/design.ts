@@ -9,7 +9,7 @@ export interface BaseEntity {
     ownerHandle?: string;
     type: string;
     extendedData?: {
-        customStrings: Array<string>;
+        [key: string]: Array<string>;
     };
     layer: string;
     name?: string;
