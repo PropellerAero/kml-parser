@@ -1,6 +1,7 @@
 import XmlParser from 'node-xml-stream-parser';
 import Parser from '../types/parser';
 import { Attributes } from '../types/node-xml-stream';
+import NormalizeEncoding from './NormalizeEncoding';
 
 export default class ParserStream {
     stream: NodeJS.ReadableStream;
@@ -8,7 +9,7 @@ export default class ParserStream {
 
     constructor(stream: NodeJS.ReadableStream) {
         const xml = new XmlParser();
-        this.stream = stream.pipe(xml);
+        this.stream = stream.pipe(new NormalizeEncoding()).pipe(xml);
         this.stream.on('opentag', this.openTag);
         this.stream.on('closetag', this.closeTag);
         this.stream.on('text', this.text);

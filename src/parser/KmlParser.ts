@@ -1,22 +1,16 @@
-import { merge } from 'lodash';
 import { Attributes } from '../types/node-xml-stream';
 import { Tags } from './tags';
 import BaseParser, { ParserOptions } from './BaseParser';
 import FolderParser from './FolderParser';
 import { Design } from '../types/design';
-import hexToLong from '../utils/hexToLong';
-import { Folder, StyleMap, Style, Placemark } from '../types/kml';
+import { Folder } from '../types/kml';
 import StyleMapParser from './StyleMapParser';
-import ParserStream from './ParserStream';
+import ParserStream from '../stream/ParserStream';
 import StyleParser from './StyleParser';
 import PlacemarkParser from './PlacemarkParser';
 import DesignBuilder from '../design/DesignBuilder';
 
-const ENTITY_HANDLE_OFFSET = 10;
-const DEFAULT_COLOR = 0xffdd00;
-const DEFAULT_POSITION = { x: 0, y: 0, z: 0 };
 const DEFAULT_FOLDER_NAME = 'DEFAULT';
-const DEFAULT_LINE_WIDTH = 1;
 
 export default class KmlParser extends BaseParser<Design> {
     builder: DesignBuilder;

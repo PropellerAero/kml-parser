@@ -4,7 +4,7 @@ import { Tags } from './tags';
 import LineStyleParser from './LineStyleParser';
 import PolyStyleParser from './PolyStyleParser';
 import LabelStyleParser from './LabelStyleParser';
-import ParserStream from './ParserStream';
+import ParserStream from '../stream/ParserStream';
 import { ParserOptions } from './BaseParser';
 
 export default class StyleParser extends ParentParser<Style> {

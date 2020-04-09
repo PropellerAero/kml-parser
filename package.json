@@ -33,6 +33,7 @@
         "typescript": "^3.8.3"
     },
     "dependencies": {
+        "detect-character-encoding": "^0.8.0",
         "html-entities": "^1.2.1",
         "lodash": "^4.17.15",
         "node-xml-stream-parser": "^1.0.12"
