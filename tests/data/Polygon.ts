@@ -26,6 +26,9 @@ export default {
             name: '1',
             extendedData: {
                 customStrings: ['1'],
+                qldglobe_place_name: ['1'],
+                _labelid: ['places-label-1567060468814-1'],
+                'Lat/Long': ['-26.72878,153.03540'],
             },
         },
         {
@@ -41,6 +44,9 @@ export default {
             name: '1',
             extendedData: {
                 customStrings: ['1'],
+                qldglobe_place_name: ['1'],
+                _labelid: ['places-label-1567060468814-1'],
+                'Lat/Long': ['-26.72878,153.03540'],
             },
         },
         {
@@ -57,6 +63,9 @@ export default {
             name: '2',
             extendedData: {
                 customStrings: ['2'],
+                qldglobe_place_name: ['2'],
+                _labelid: ['places-label-1567060533607-3'],
+                'Lat/Long': ['-26.72910,153.03593'],
             },
         },
         {
@@ -72,6 +81,9 @@ export default {
             name: '2',
             extendedData: {
                 customStrings: ['2'],
+                qldglobe_place_name: ['2'],
+                _labelid: ['places-label-1567060533607-3'],
+                'Lat/Long': ['-26.72910,153.03593'],
             },
         },
         {
@@ -88,6 +100,9 @@ export default {
             name: '3',
             extendedData: {
                 customStrings: ['3'],
+                qldglobe_place_name: ['3'],
+                _labelid: ['places-label-1567060560215-5'],
+                'Lat/Long': ['-26.72972,153.03630'],
             },
         },
         {
@@ -103,6 +118,9 @@ export default {
             name: '3',
             extendedData: {
                 customStrings: ['3'],
+                qldglobe_place_name: ['3'],
+                _labelid: ['places-label-1567060560215-5'],
+                'Lat/Long': ['-26.72972,153.03630'],
             },
         },
         {
@@ -119,6 +137,9 @@ export default {
             name: '4',
             extendedData: {
                 customStrings: ['4'],
+                qldglobe_place_name: ['4'],
+                _labelid: ['places-label-1567060608479-7'],
+                'Lat/Long': ['-26.73067,153.03557'],
             },
         },
         {
@@ -134,6 +155,9 @@ export default {
             name: '4',
             extendedData: {
                 customStrings: ['4'],
+                qldglobe_place_name: ['4'],
+                _labelid: ['places-label-1567060608479-7'],
+                'Lat/Long': ['-26.73067,153.03557'],
             },
         },
         {
@@ -150,6 +174,9 @@ export default {
             name: '5',
             extendedData: {
                 customStrings: ['5'],
+                qldglobe_place_name: ['5'],
+                _labelid: ['places-label-1567060642024-9'],
+                'Lat/Long': ['-26.73070,153.03554'],
             },
         },
         {
@@ -165,6 +192,9 @@ export default {
             name: '5',
             extendedData: {
                 customStrings: ['5'],
+                qldglobe_place_name: ['5'],
+                _labelid: ['places-label-1567060642024-9'],
+                'Lat/Long': ['-26.73070,153.03554'],
             },
         },
         {
@@ -181,6 +211,9 @@ export default {
             name: '6',
             extendedData: {
                 customStrings: ['6'],
+                qldglobe_place_name: ['6'],
+                _labelid: ['places-label-1567060673542-11'],
+                'Lat/Long': ['-26.73079,153.03532'],
             },
         },
         {
@@ -196,6 +229,9 @@ export default {
             name: '6',
             extendedData: {
                 customStrings: ['6'],
+                qldglobe_place_name: ['6'],
+                _labelid: ['places-label-1567060673542-11'],
+                'Lat/Long': ['-26.73079,153.03532'],
             },
         },
         {
@@ -212,6 +248,9 @@ export default {
             name: '7',
             extendedData: {
                 customStrings: ['7'],
+                qldglobe_place_name: ['7'],
+                _labelid: ['places-label-1567060705158-13'],
+                'Lat/Long': ['-26.73071,153.03515'],
             },
         },
         {
@@ -227,6 +266,9 @@ export default {
             name: '7',
             extendedData: {
                 customStrings: ['7'],
+                qldglobe_place_name: ['7'],
+                _labelid: ['places-label-1567060705158-13'],
+                'Lat/Long': ['-26.73071,153.03515'],
             },
         },
         {
@@ -243,6 +285,9 @@ export default {
             name: '8',
             extendedData: {
                 customStrings: ['8'],
+                qldglobe_place_name: ['8'],
+                _labelid: ['places-label-1567060755174-15'],
+                'Lat/Long': ['-26.73013,153.03485'],
             },
         },
         {
@@ -258,6 +303,9 @@ export default {
             name: '8',
             extendedData: {
                 customStrings: ['8'],
+                qldglobe_place_name: ['8'],
+                _labelid: ['places-label-1567060755174-15'],
+                'Lat/Long': ['-26.73013,153.03485'],
             },
         },
         {
@@ -274,6 +322,9 @@ export default {
             name: '9',
             extendedData: {
                 customStrings: ['9'],
+                qldglobe_place_name: ['9'],
+                _labelid: ['places-label-1567060782350-17'],
+                'Lat/Long': ['-26.72956,153.03482'],
             },
         },
         {
@@ -289,6 +340,9 @@ export default {
             name: '9',
             extendedData: {
                 customStrings: ['9'],
+                qldglobe_place_name: ['9'],
+                _labelid: ['places-label-1567060782350-17'],
+                'Lat/Long': ['-26.72956,153.03482'],
             },
         },
         {
@@ -305,6 +359,9 @@ export default {
             name: '10',
             extendedData: {
                 customStrings: ['10'],
+                qldglobe_place_name: ['10'],
+                _labelid: ['places-label-1567060809829-19'],
+                'Lat/Long': ['-26.72905,153.03467'],
             },
         },
         {
@@ -320,6 +377,9 @@ export default {
             name: '10',
             extendedData: {
                 customStrings: ['10'],
+                qldglobe_place_name: ['10'],
+                _labelid: ['places-label-1567060809829-19'],
+                'Lat/Long': ['-26.72905,153.03467'],
             },
         },
         {
@@ -383,6 +443,10 @@ export default {
             name: 'My Place 1',
             extendedData: {
                 customStrings: ['My Place 1'],
+                qldglobe_place_name: ['My Place 1'],
+                _labelid: ['places-label-1567060853698-21'],
+                Perimeter: ['591.68 m'],
+                Area: ['2.29 hectares'],
             },
         },
     ],

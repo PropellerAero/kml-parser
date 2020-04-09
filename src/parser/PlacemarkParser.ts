@@ -5,6 +5,7 @@ import PointParser from './PointParser';
 import PolygonParser from './PolygonParser';
 import ParentParser from './ParentParser';
 import StyleParser from './StyleParser';
+import ExtendedDataParser from './ExtendedDataParser';
 import { Attributes } from '../types/node-xml-stream';
 
 export default class PlacemarkParser extends ParentParser<Placemark> {
@@ -47,6 +48,10 @@ export default class PlacemarkParser extends ParentParser<Placemark> {
             case Tags.Polygon:
                 this.await(this.parsePolygon());
                 break;
+
+            case Tags.ExtendedData:
+                this.await(this.parseExtendedData());
+                break;
         }
     }
 
@@ -74,5 +79,14 @@ export default class PlacemarkParser extends ParentParser<Placemark> {
         const polygonParser = new PolygonParser(this.stream, this.options);
         const polygon = await polygonParser.parse();
         this.data.polygon = polygon;
+    }
+
+    async parseExtendedData() {
+        const extendedDataParser = new ExtendedDataParser(
+            this.stream,
+            this.options
+        );
+        const extendedData = await extendedDataParser.parse();
+        this.data.extendedData = extendedData;
     }
 }

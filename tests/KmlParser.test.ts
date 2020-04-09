@@ -123,7 +123,7 @@ describe('KmlParser', () => {
         done();
     });
 
-    it('should parse a kml stream and return a design with polygons', async (done) => {
+    it('should parse a kml stream and return a design with polygons and extended data', async (done) => {
         const stream = fs.createReadStream(
             path.join(__dirname, './data/Polygon.kml')
         );
