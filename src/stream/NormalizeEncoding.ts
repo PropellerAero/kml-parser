@@ -1,8 +1,8 @@
 import { Transform, TransformCallback } from 'stream';
-import detectCharacterEncoding from 'detect-character-encoding';
+import { isEqual } from 'lodash';
 
-const DETECTED_ENCODINGS = {
-    UTF16LE: 'UTF-16LE',
+const BYTEORDERMARKS = {
+    UTF16LE: [0xff, 0xfe],
 };
 
 const UTF16LE = 'utf16le';
@@ -11,21 +11,12 @@ const UTF8 = 'utf8';
 class NormalizeEncoding extends Transform {
     encoding: string;
 
-    getKnownEncoding(encoding: string) {
-        switch (encoding) {
-            case DETECTED_ENCODINGS.UTF16LE:
-                return UTF16LE;
-            default:
-                return UTF8;
-        }
-    }
-
     _transform(chunk: Buffer, encoding: string, callback: TransformCallback) {
         if (!this.encoding) {
-            const characterSet = detectCharacterEncoding(chunk);
-            if (characterSet) {
-                this.encoding = this.getKnownEncoding(characterSet.encoding);
-            }
+            const byteOrderMarks = [chunk[0], chunk[1]];
+            this.encoding = isEqual(BYTEORDERMARKS.UTF16LE, byteOrderMarks)
+                ? UTF16LE
+                : UTF8;
         }
         callback(null, chunk.toString(this.encoding));
     }
