@@ -21,6 +21,16 @@ describe('KmlParser', () => {
         done();
     });
 
+    it('should parse a kml stream and return a design with polylines in utf-16 encoding', async (done) => {
+        const stream = fs.createReadStream(
+            path.join(__dirname, './data/PolylineUTF16.kml')
+        );
+        const parser = new KmlParser(stream);
+        const output = await parser.parse();
+        expect(output).toEqual(Polyline);
+        done();
+    });
+
     it('should accept a coordinate conversion function', async (done) => {
         const stream = fs.createReadStream(
             path.join(__dirname, './data/Polyline.kml')

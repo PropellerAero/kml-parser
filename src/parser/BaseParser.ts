@@ -1,7 +1,7 @@
 import { Attributes } from '../types/node-xml-stream';
 import { ConvertCoordinate } from '../types/kml';
 import Parser from '../types/parser';
-import ParserStream from './ParserStream';
+import ParserStream from '../stream/ParserStream';
 
 export type ParserOptions = {
     convertCoordinate?: ConvertCoordinate;

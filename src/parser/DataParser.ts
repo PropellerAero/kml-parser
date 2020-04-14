@@ -1,7 +1,7 @@
 import ParentParser from './ParentParser';
 import { Tags } from './tags';
 import { ExtendedData } from '../types/kml';
-import ParserStream from './ParserStream';
+import ParserStream from '../stream/ParserStream';
 import { ParserOptions } from './BaseParser';
 
 export default class DataParser extends ParentParser<ExtendedData> {
