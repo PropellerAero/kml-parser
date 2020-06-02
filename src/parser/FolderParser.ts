@@ -9,7 +9,6 @@ export default class FolderParser extends ParentParser<Folder> {
     static Tag = Tags.Folder;
 
     data: Folder = {
-        name: '',
         placemarks: [],
         folders: [],
         styles: {},
@@ -23,7 +22,9 @@ export default class FolderParser extends ParentParser<Folder> {
 
             case Tags.Name:
                 this.awaitText().then((name) => {
-                    this.data.name = name;
+                    if (name.trim()) {
+                        this.data.name = name;
+                    }
                 });
                 break;
 

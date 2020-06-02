@@ -16,6 +16,7 @@ const ENTITY_HANDLE_OFFSET = 10;
 const DEFAULT_COLOR = 0xffdd00;
 const DEFAULT_POSITION = { x: 0, y: 0, z: 0 };
 const DEFAULT_LINE_WIDTH = 1;
+const DEFAULT_LAYER_NAME = 'DEFAULT';
 
 type SharedEntitiyProperties = {
     color: number;
@@ -88,7 +89,12 @@ export default class DesignBuilder {
     }
 
     processFolder(folder: Folder) {
-        const { name: layerName, placemarks, folders, styles } = folder;
+        const {
+            name: layerName = DEFAULT_LAYER_NAME,
+            placemarks,
+            folders,
+            styles,
+        } = folder;
 
         this.registerStyles(styles);
 
@@ -103,7 +109,10 @@ export default class DesignBuilder {
         });
     }
 
-    processPlacemark(placemark: Placemark, layerName: string) {
+    processPlacemark(
+        placemark: Placemark,
+        layerName: string = DEFAULT_LAYER_NAME
+    ) {
         const {
             description,
             lineString,
