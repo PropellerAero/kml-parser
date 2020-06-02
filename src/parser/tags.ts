@@ -19,6 +19,7 @@ export const Tags = {
     LinearRing: 'LinearRing',
     LineString: 'LineString',
     LineStyle: 'LineStyle',
+    MultiGeometry: 'MultiGeometry',
     Name: 'name',
     OuterBoundaryIs: 'outerBoundaryIs',
     Outline: 'outline',

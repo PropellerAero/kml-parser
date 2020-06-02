@@ -25,6 +25,7 @@ export type Placemark = {
     point?: Point;
     styleUrl?: string;
     polygon?: Polygon;
+    multiGeometry?: MultiGeometry;
     extendedData?: Array<ExtendedData>;
 };
 
@@ -88,6 +89,12 @@ export type LineString = {
 
 export type Point = {
     coordinate?: Coordinate;
+};
+
+export type MultiGeometry = {
+    points: Array<Point>;
+    lineStrings: Array<LineString>;
+    polygons: Array<Polygon>;
 };
 
 export type Coordinate = {

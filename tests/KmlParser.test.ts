@@ -9,6 +9,7 @@ import NestedFolders from './data/NestedFolders';
 import StyleMap from './data/StyleMap';
 import DefaultFolder from './data/DefaultFolder';
 import Polygon from './data/Polygon';
+import MultiGeometry from './data/MultiGeometry';
 
 describe('KmlParser', () => {
     it('should parse a kml stream and return a design with polylines', async (done) => {
@@ -140,6 +141,16 @@ describe('KmlParser', () => {
         const parser = new KmlParser(stream);
         const output = await parser.parse();
         expect(output).toEqual(Polygon);
+        done();
+    });
+
+    it('should parse a kml stream and return a design with multi geometry', async (done) => {
+        const stream = fs.createReadStream(
+            path.join(__dirname, './data/MultiGeometry.kml')
+        );
+        const parser = new KmlParser(stream);
+        const output = await parser.parse();
+        expect(output).toEqual(MultiGeometry);
         done();
     });
 });

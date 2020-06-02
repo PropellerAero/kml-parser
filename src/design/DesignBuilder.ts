@@ -1,5 +1,14 @@
 import { merge } from 'lodash';
-import { Style, Placemark, StyleMap, Folder, ExtendedData } from '../types/kml';
+import {
+    Style,
+    Placemark,
+    StyleMap,
+    Folder,
+    ExtendedData,
+    LineString,
+    Polygon,
+    Point,
+} from '../types/kml';
 import { Layer, Design, Cartesian3 } from '../types/design';
 import hexToLong from '../utils/hexToLong';
 
@@ -103,45 +112,61 @@ export default class DesignBuilder {
             point,
             styleUrl,
             polygon,
+            multiGeometry,
             extendedData,
         } = placemark;
 
         const refStyle = this.getStyle(styleUrl);
         const combinedStyle: Style = merge({}, refStyle, style);
 
-        if (lineString && lineString.coordinates) {
-            this.buildPolyline({
-                layerName,
-                style: combinedStyle,
-                vertices: lineString.coordinates,
-                name,
-                description,
-                extendedData,
-            });
-        }
-
-        if (
-            polygon &&
-            polygon.outerBoundary &&
-            polygon.outerBoundary.coordinates
-        ) {
-            this.buildPolyline({
-                layerName,
-                style: combinedStyle,
-                vertices: polygon.outerBoundary.coordinates,
-                name,
-                description,
-                extendedData,
-            });
-        }
-
-        if (point && point.coordinate) {
-            const position = point.coordinate;
-
-            if (name) {
-                this.buildText({
+        const processLineString = (lineString?: LineString) => {
+            if (lineString && lineString.coordinates) {
+                this.buildPolyline({
                     layerName,
-                    text: name,
+                    style: combinedStyle,
+                    vertices: lineString.coordinates,
+                    name,
+                    description,
+                    extendedData,
+                });
+            }
+        };
+
+        const processPolygon = (polygon?: Polygon) => {
+            if (
+                polygon &&
+                polygon.outerBoundary &&
+                polygon.outerBoundary.coordinates
+            ) {
+                this.buildPolyline({
+                    layerName,
+                    style: combinedStyle,
+                    vertices: polygon.outerBoundary.coordinates,
+                    name,
+                    description,
+                    extendedData,
+                });
+            }
+        };
+
+        const processPoint = (point?: Point) => {
+            if (point && point.coordinate) {
+                const position = point.coordinate;
+
+                if (name) {
+                    this.buildText({
+                        layerName,
+                        text: name,
+                        position,
+                        name,
+                        description,
+                        style: combinedStyle,
+                        extendedData,
+                    });
+                }
+
+                this.buildPoint({
+                    layerName,
                     position,
                     name,
                     description,
@@ -149,16 +174,17 @@ export default class DesignBuilder {
                     extendedData,
                 });
             }
+        };
 
-            this.buildPoint({
-                layerName,
-                position,
-                name,
-                description,
-                style: combinedStyle,
-                extendedData,
-            });
+        if (multiGeometry) {
+            multiGeometry.lineStrings.forEach(processLineString);
+            multiGeometry.polygons.forEach(processPolygon);
+            multiGeometry.points.forEach(processPoint);
         }
+
+        processLineString(lineString);
+        processPolygon(polygon);
+        processPoint(point);
     }
 
     buildPolyline({
