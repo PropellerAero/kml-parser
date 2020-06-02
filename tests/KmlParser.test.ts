@@ -134,6 +134,16 @@ describe('KmlParser', () => {
         done();
     });
 
+    it('should parse a kml stream and return a design object with unnamed folder', async (done) => {
+        const stream = fs.createReadStream(
+            path.join(__dirname, './data/UnnamedFolder.kml')
+        );
+        const parser = new KmlParser(stream);
+        const output = await parser.parse();
+        expect(output).toEqual(DefaultFolder);
+        done();
+    });
+
     it('should parse a kml stream and return a design with polygons and extended data', async (done) => {
         const stream = fs.createReadStream(
             path.join(__dirname, './data/Polygon.kml')

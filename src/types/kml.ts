@@ -9,7 +9,7 @@ export enum AltitudeMode {
 }
 
 export type Folder = {
-    name: string;
+    name?: string;
     placemarks: Array<Placemark>;
     folders: Array<Folder>;
     styles: {

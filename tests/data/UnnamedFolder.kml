@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+    <Document id="root_doc">
+        <Folder>
+            <Placemark>
+                <description>Polyline 1</description>
+                <Style>
+                    <LineStyle>
+                        <color>ff0000ff</color>
+                        <width>2</width>
+                    </LineStyle>
+                    <PolyStyle>
+                        <color>ff00ddff</color>
+                        <fill>0</fill>
+                        <outline>0</outline>
+                    </PolyStyle>
+                </Style>
+                <LineString>
+                    <altitudeMode>clampToGround</altitudeMode>
+                    <coordinates>150.0,30.0,0 150.0,35.0,0 145.0,30.0,0</coordinates>
+                </LineString>
+            </Placemark>
+            <Placemark>
+                <description>Polyline 2</description>
+                <Style>
+                    <LineStyle>
+                        <color>ff0000ff</color>
+                    </LineStyle>
+                    <PolyStyle>
+                        <fill>0</fill>
+                    </PolyStyle>
+                </Style>
+                <LineString>
+                    <altitudeMode>clampToGround</altitudeMode>
+                    <coordinates>120.0,-30.0,0 120.0,-35.0,0 115.0,-30.0,0</coordinates>
+                </LineString>
+            </Placemark>
+        </Folder>
+    </Document>
+</kml>

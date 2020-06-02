@@ -24,7 +24,9 @@ export default class PlacemarkParser extends ParentParser<Placemark> {
 
             case Tags.Name:
                 this.awaitText().then((name) => {
-                    this.data.name = name;
+                    if (name.trim()) {
+                        this.data.name = name;
+                    }
                 });
                 break;
 
