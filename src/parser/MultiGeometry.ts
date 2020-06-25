@@ -21,11 +21,11 @@ export default class MultiGeometryParser extends ParentParser<MultiGeometry> {
                 break;
 
             case Tags.Polygon:
-                this.await(this.parseLineString());
+                this.await(this.parsePolygon());
                 break;
 
             case Tags.Point:
-                this.await(this.parseLineString());
+                this.await(this.parsePoint());
                 break;
         }
     }
