@@ -1,7 +1,7 @@
+import { XmlEntities } from 'html-entities';
 import BaseParser from './BaseParser';
 import TextParser from './TextParser';
 import CoordinatesParser from './CoordinatesParser';
-import { XmlEntities } from 'html-entities';
 import CoordinateParser from './CoordinateParser';
 
 const xmlEntities = new XmlEntities();

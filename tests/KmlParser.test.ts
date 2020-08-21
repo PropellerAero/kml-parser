@@ -10,6 +10,7 @@ import StyleMap from './data/StyleMap';
 import DefaultFolder from './data/DefaultFolder';
 import Polygon from './data/Polygon';
 import MultiGeometry from './data/MultiGeometry';
+import MultiGeometryWhiteSpace from './data/MultiGeometryWhiteSpace';
 
 describe('KmlParser', () => {
     it('should parse a kml stream and return a design with polylines', async (done) => {
@@ -161,6 +162,16 @@ describe('KmlParser', () => {
         const parser = new KmlParser(stream);
         const output = await parser.parse();
         expect(output).toEqual(MultiGeometry);
+        done();
+    });
+
+    it('should parse a kml stream and return a design with multi geometry with white space', async (done) => {
+        const stream = fs.createReadStream(
+            path.join(__dirname, './data/MultiGeometryWhiteSpace.kml')
+        );
+        const parser = new KmlParser(stream);
+        const output = await parser.parse();
+        expect(output).toEqual(MultiGeometryWhiteSpace);
         done();
     });
 });
