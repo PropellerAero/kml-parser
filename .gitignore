@@ -64,7 +64,6 @@ deployment/secrets/decrypted
 
 # Codeship encyption key
 codeship.aes
-deployment/secrets
 
 # Terraform state
 *.terraform*
