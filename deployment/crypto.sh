@@ -16,8 +16,8 @@ usage() {
 }
 
 DEPLOYMENT_PATH=$(dirname $0)
-ENCRYPTED_PATH="$DEPLOYMENT_PATH/encrypted"
-SECRETS_PATH="$DEPLOYMENT_PATH/secrets"
+ENCRYPTED_PATH="$DEPLOYMENT_PATH/secrets/encrypted"
+SECRETS_PATH="$DEPLOYMENT_PATH/secrets/decrypted"
 KEY_PATH="$DEPLOYMENT_PATH/codeship.aes" # todo: getopts --key-path
 
 ARGC=$#
