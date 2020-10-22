@@ -1,5 +1,5 @@
 package:
-  encrypted_env_file: deployment/secrets/encrypted/deploy_creds_env.sec
+  encrypted_env_file: deployment/secrets/encrypted/deploy_creds_production.sec
   build:
     dockerfile: deployment/Dockerfile
     encrypted_args_file: deployment/secrets/encrypted/deploy_creds_args.sec
@@ -7,12 +7,12 @@ package:
 dockercfg-production:
   image: codeship/aws-ecr-dockercfg-generator
   add_docker: true
-  encrypted_env_file: deployment/secrets/encrypted/deploy_creds_env.encrypted
+  encrypted_env_file: deployment/secrets/encrypted/deploy_creds_production.encrypted
 
 publisher:
   image: 621673481476.dkr.ecr.us-east-1.amazonaws.com/deploy-tools
   volumes:
     - .:/code-to-deploy
   cached: true
-  encrypted_env_file: deployment/secrets/encrypted/deploy_creds_env.sec
+  encrypted_env_file: deployment/secrets/encrypted/deploy_creds_production.sec
   dockercfg_service: dockercfg-production
