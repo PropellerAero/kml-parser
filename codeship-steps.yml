@@ -1,8 +1,8 @@
-- name: test
+- name: Test
   service: package
   command: yarn test
 
-- name: build
+- name: Build
   service: package
   command: yarn build
 
