@@ -1,5 +1,7 @@
 # kml-parser
 
+**DEPRECATION NOTICE:** This codebase has been incorporated into https://github.com/PropellerAero/design-io
+
 Stream based KML Parser which converts KML to a proprietary Propeller Design JSON format.
 
 ### Usage
